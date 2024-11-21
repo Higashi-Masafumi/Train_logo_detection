@@ -1,3 +1,5 @@
+import 'dart:async'; // Timerを使うために追加
+import 'dart:typed_data';
 import 'dart:io' as io;
 
 import 'package:flutter/material.dart';
@@ -21,6 +23,31 @@ class MyApp extends StatefulWidget {
 
 class _MyAppState extends State<MyApp> {
   final controller = UltralyticsYoloCameraController();
+  Uint8List? _currentImage; // 最新の画像データ
+  Timer? _timer; // 定期的に実行するタイマー
+
+  @override
+  void initState() {
+    super.initState();
+    controller.setStrokeWidth(0.0);
+
+    // 定期的にcurrent_imageを取得するタイマーをセットアップ
+    _timer = Timer.periodic(const Duration(seconds: 1), (_) async {
+      final image = await controller.getCameraImage();
+      debugPrint("Image: $image");
+      if (image != null) {
+        setState(() {
+          _currentImage = image;
+        });
+      }
+    });
+  }
+
+  @override
+  void dispose() {
+    _timer?.cancel(); // タイマーを停止
+    super.dispose();
+  }
 
   @override
   Widget build(BuildContext context) {
@@ -39,14 +66,18 @@ class _MyAppState extends State<MyApp> {
                       final predictor = snapshot.data;
                       debugPrint("Predictor: $predictor");
                       if (snapshot.hasError) {
-                        debugPrint("Error initializing ObjectDetector: ${snapshot.error}");
-                        return Center(child: Text("Error loading model: ${snapshot.error}"));
+                        debugPrint(
+                            "Error initializing ObjectDetector: ${snapshot.error}");
+                        return Center(
+                            child:
+                                Text("Error loading model: ${snapshot.error}"));
                       }
 
                       return predictor == null
                           ? const Center(child: CircularProgressIndicator())
                           : Stack(
                               children: [
+                                // カメラプレビュー
                                 UltralyticsYoloCameraPreview(
                                   controller: controller,
                                   predictor: predictor,
@@ -55,20 +86,20 @@ class _MyAppState extends State<MyApp> {
                                       predictor.loadModel(useGpu: true);
                                       debugPrint("Model successfully loaded.");
                                     } catch (e) {
-                                      debugPrint("Error during model loading: $e");
+                                      debugPrint(
+                                          "Error during model loading: $e");
                                     }
                                   },
                                 ),
+                                // FPS と推論時間の情報
                                 StreamBuilder<double?>(
                                   stream: predictor.inferenceTime,
                                   builder: (context, snapshot) {
                                     final inferenceTime = snapshot.data;
-
                                     return StreamBuilder<double?>(
                                       stream: predictor.fpsRate,
                                       builder: (context, snapshot) {
                                         final fpsRate = snapshot.data;
-
                                         return Times(
                                           inferenceTime: inferenceTime,
                                           fpsRate: fpsRate,
@@ -76,6 +107,31 @@ class _MyAppState extends State<MyApp> {
                                       },
                                     );
                                   },
+                                ),
+                                // 定期的に取得した画像を表示
+                                Align(
+                                  alignment: Alignment.bottomRight,
+                                  child: Container(
+                                    margin: const EdgeInsets.all(20),
+                                    width: 100,
+                                    height: 100,
+                                    decoration: BoxDecoration(
+                                      border: Border.all(color: Colors.white),
+                                      borderRadius: BorderRadius.circular(10),
+                                    ),
+                                    child: _currentImage == null
+                                        ? const Center(
+                                            child: Text(
+                                              "No Image",
+                                              style: TextStyle(
+                                                  color: Colors.white),
+                                            ),
+                                          )
+                                        : Image.memory(
+                                            _currentImage!,
+                                            fit: BoxFit.cover,
+                                          ),
+                                  ),
                                 ),
                               ],
                             );
@@ -99,7 +155,7 @@ class _MyAppState extends State<MyApp> {
       debugPrint("Application Support Directory: ${appSupportDir.path}");
 
       final modelPath = await _copy('assets/imgsz_320_192.mlmodel');
-      
+
       debugPrint("Model Path: $modelPath");
 
       final model = LocalYoloModel(

@@ -30,6 +30,8 @@
 	<string>Camera permission is required for object detection.</string>
 	<key>NSPhotoLibraryUsageDescription</key>
 	<string>Storage permission is required for object detection.</string>
+	<key>NSMicrophoneUsageDescription</key>
+	<string>Microphone is used only for getting sound</string>
 	<key>NSAppTransportSecurity</key>
 	<dict>
 		<key>NSAllowsArbitraryLoads</key>
