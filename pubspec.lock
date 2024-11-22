@@ -22,6 +22,14 @@ packages:
       url: "https://pub.dev"
     source: hosted
     version: "6.7.0"
+  archive:
+    dependency: transitive
+    description:
+      name: archive
+      sha256: cb6a278ef2dbb298455e1a713bda08524a175630ec643a242c399c932a0a1f7d
+      url: "https://pub.dev"
+    source: hosted
+    version: "3.6.1"
   args:
     dependency: transitive
     description:
@@ -325,6 +333,22 @@ packages:
       url: "https://pub.dev"
     source: hosted
     version: "2.1.2"
+  google_mlkit_commons:
+    dependency: transitive
+    description:
+      name: google_mlkit_commons
+      sha256: "7e9a6d6e66b44aa8cfe944bda9bc3346c52486dd890ca49e5bc98845cda40d7f"
+      url: "https://pub.dev"
+    source: hosted
+    version: "0.9.0"
+  google_mlkit_text_recognition:
+    dependency: "direct main"
+    description:
+      name: google_mlkit_text_recognition
+      sha256: e7609cec8de3022680a36ead8a8bafa9fd2360ea018a728feaad12dcb0e3c177
+      url: "https://pub.dev"
+    source: hosted
+    version: "0.14.0"
   graphs:
     dependency: transitive
     description:
@@ -349,6 +373,14 @@ packages:
       url: "https://pub.dev"
     source: hosted
     version: "4.0.2"
+  image:
+    dependency: "direct main"
+    description:
+      name: image
+      sha256: f31d52537dc417fdcde36088fdf11d191026fd5e4fae742491ebd40e5a8bea7d
+      url: "https://pub.dev"
+    source: hosted
+    version: "4.3.0"
   io:
     dependency: transitive
     description:
@@ -573,6 +605,14 @@ packages:
       url: "https://pub.dev"
     source: hosted
     version: "0.2.1"
+  petitparser:
+    dependency: transitive
+    description:
+      name: petitparser
+      sha256: c15605cd28af66339f8eb6fbe0e541bfe2d1b72d5825efc6598f3e0a31b9ad27
+      url: "https://pub.dev"
+    source: hosted
+    version: "6.0.2"
   platform:
     dependency: transitive
     description:
@@ -786,6 +826,14 @@ packages:
       url: "https://pub.dev"
     source: hosted
     version: "1.1.0"
+  xml:
+    dependency: transitive
+    description:
+      name: xml
+      sha256: b015a8ad1c488f66851d762d3090a21c600e479dc75e68328c52774040cf9226
+      url: "https://pub.dev"
+    source: hosted
+    version: "6.5.0"
   yaml:
     dependency: transitive
     description:

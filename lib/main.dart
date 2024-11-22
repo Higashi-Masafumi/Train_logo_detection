@@ -1,5 +1,4 @@
 import 'dart:async'; // Timerを使うために追加
-import 'dart:typed_data';
 import 'dart:io' as io;
 
 import 'package:flutter/material.dart';

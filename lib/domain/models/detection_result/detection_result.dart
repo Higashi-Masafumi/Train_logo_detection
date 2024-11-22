@@ -17,7 +17,7 @@ class DetectionResult with _$DetectionResult {
 class DetectionResultWithImage with _$DetectionResultWithImage {
   const factory DetectionResultWithImage({
     required DetectionResult detectionResult,
-    required Uint8List cropedimage,
+    required Uint8List croppedimage,
   }) = _DetectionResultWithImage;
 }
 

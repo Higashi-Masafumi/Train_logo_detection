@@ -1,14 +1,37 @@
-import 'dart:async';
-import 'package:camera/camera.dart';
 import 'package:ultralytics_yolo/ultralytics_yolo.dart';
 
-class ExtendedYoloCameraController extends UltralyticsYoloCameraController {
-  final _frameStreamController = StreamController<CameraImage>.broadcast();
+class YoloCameraService {
+  // singleton instance
+  static final YoloCameraService _instance = YoloCameraService._internal();
 
-  Stream<CameraImage> get frameStream => _frameStreamController.stream;
+  factory YoloCameraService() {
+    return _instance;
+  }
 
-  ExtendedYoloCameraController() : super();
+  // private constructor
+  YoloCameraService._internal();
 
+  // private fields
+  late UltralyticsYoloCameraController _ultralyticsYoloCameraController;
 
+  bool _isInitialized = false;
+
+  // initialize the camera controller
+  void initialize() {
+    _ultralyticsYoloCameraController = UltralyticsYoloCameraController();
+    _isInitialized = true;
+  }
+
+  // getters
+  UltralyticsYoloCameraController get ultralyticsYoloCameraController {
+    if (!_isInitialized) {
+      throw Exception("YoloCameraService not initialized.");
+    }
+    return _ultralyticsYoloCameraController;
+  }
+
+  // dispose the camera controller
+  void dispose() {
+    _ultralyticsYoloCameraController.dispose();
+  }
 }
-

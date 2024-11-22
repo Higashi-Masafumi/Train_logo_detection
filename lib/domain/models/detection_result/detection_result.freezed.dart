@@ -186,7 +186,7 @@ abstract class _DetectionResult implements DetectionResult {
 /// @nodoc
 mixin _$DetectionResultWithImage {
   DetectionResult get detectionResult => throw _privateConstructorUsedError;
-  Uint8List get cropedimage => throw _privateConstructorUsedError;
+  Uint8List get croppedimage => throw _privateConstructorUsedError;
 
   /// Create a copy of DetectionResultWithImage
   /// with the given fields replaced by the non-null parameter values.
@@ -201,7 +201,7 @@ abstract class $DetectionResultWithImageCopyWith<$Res> {
           $Res Function(DetectionResultWithImage) then) =
       _$DetectionResultWithImageCopyWithImpl<$Res, DetectionResultWithImage>;
   @useResult
-  $Res call({DetectionResult detectionResult, Uint8List cropedimage});
+  $Res call({DetectionResult detectionResult, Uint8List croppedimage});
 
   $DetectionResultCopyWith<$Res> get detectionResult;
 }
@@ -223,16 +223,16 @@ class _$DetectionResultWithImageCopyWithImpl<$Res,
   @override
   $Res call({
     Object? detectionResult = null,
-    Object? cropedimage = null,
+    Object? croppedimage = null,
   }) {
     return _then(_value.copyWith(
       detectionResult: null == detectionResult
           ? _value.detectionResult
           : detectionResult // ignore: cast_nullable_to_non_nullable
               as DetectionResult,
-      cropedimage: null == cropedimage
-          ? _value.cropedimage
-          : cropedimage // ignore: cast_nullable_to_non_nullable
+      croppedimage: null == croppedimage
+          ? _value.croppedimage
+          : croppedimage // ignore: cast_nullable_to_non_nullable
               as Uint8List,
     ) as $Val);
   }
@@ -257,7 +257,7 @@ abstract class _$$DetectionResultWithImageImplCopyWith<$Res>
       __$$DetectionResultWithImageImplCopyWithImpl<$Res>;
   @override
   @useResult
-  $Res call({DetectionResult detectionResult, Uint8List cropedimage});
+  $Res call({DetectionResult detectionResult, Uint8List croppedimage});
 
   @override
   $DetectionResultCopyWith<$Res> get detectionResult;
@@ -279,16 +279,16 @@ class __$$DetectionResultWithImageImplCopyWithImpl<$Res>
   @override
   $Res call({
     Object? detectionResult = null,
-    Object? cropedimage = null,
+    Object? croppedimage = null,
   }) {
     return _then(_$DetectionResultWithImageImpl(
       detectionResult: null == detectionResult
           ? _value.detectionResult
           : detectionResult // ignore: cast_nullable_to_non_nullable
               as DetectionResult,
-      cropedimage: null == cropedimage
-          ? _value.cropedimage
-          : cropedimage // ignore: cast_nullable_to_non_nullable
+      croppedimage: null == croppedimage
+          ? _value.croppedimage
+          : croppedimage // ignore: cast_nullable_to_non_nullable
               as Uint8List,
     ));
   }
@@ -298,16 +298,16 @@ class __$$DetectionResultWithImageImplCopyWithImpl<$Res>
 
 class _$DetectionResultWithImageImpl implements _DetectionResultWithImage {
   const _$DetectionResultWithImageImpl(
-      {required this.detectionResult, required this.cropedimage});
+      {required this.detectionResult, required this.croppedimage});
 
   @override
   final DetectionResult detectionResult;
   @override
-  final Uint8List cropedimage;
+  final Uint8List croppedimage;
 
   @override
   String toString() {
-    return 'DetectionResultWithImage(detectionResult: $detectionResult, cropedimage: $cropedimage)';
+    return 'DetectionResultWithImage(detectionResult: $detectionResult, croppedimage: $croppedimage)';
   }
 
   @override
@@ -318,12 +318,12 @@ class _$DetectionResultWithImageImpl implements _DetectionResultWithImage {
             (identical(other.detectionResult, detectionResult) ||
                 other.detectionResult == detectionResult) &&
             const DeepCollectionEquality()
-                .equals(other.cropedimage, cropedimage));
+                .equals(other.croppedimage, croppedimage));
   }
 
   @override
   int get hashCode => Object.hash(runtimeType, detectionResult,
-      const DeepCollectionEquality().hash(cropedimage));
+      const DeepCollectionEquality().hash(croppedimage));
 
   /// Create a copy of DetectionResultWithImage
   /// with the given fields replaced by the non-null parameter values.
@@ -338,12 +338,12 @@ class _$DetectionResultWithImageImpl implements _DetectionResultWithImage {
 abstract class _DetectionResultWithImage implements DetectionResultWithImage {
   const factory _DetectionResultWithImage(
       {required final DetectionResult detectionResult,
-      required final Uint8List cropedimage}) = _$DetectionResultWithImageImpl;
+      required final Uint8List croppedimage}) = _$DetectionResultWithImageImpl;
 
   @override
   DetectionResult get detectionResult;
   @override
-  Uint8List get cropedimage;
+  Uint8List get croppedimage;
 
   /// Create a copy of DetectionResultWithImage
   /// with the given fields replaced by the non-null parameter values.
