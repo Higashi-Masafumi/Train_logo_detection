@@ -1,0 +1,19 @@
+/* 
+  InfoPlist.strings
+  Runner
+
+  Created by 東　真史 on 2024/11/25.
+  
+*/
+
+/* CFBundleDisplayName */
+CFBundleDisplayName = "Train Logo Detection App";
+
+/* NSCameraUsageDescription */
+NSCameraUsageDescription = "The camera is used for object detection";
+
+/* NSPhotoLibraryUsageDescription */
+NSPhotoLibraryUsageDescription = "Access to the photo library may be requested for object detection on images";
+
+/* NSMicrophoneUsageDescription */
+NSMicrophoneUsageDescription = "The microphone may be used to detect sounds";

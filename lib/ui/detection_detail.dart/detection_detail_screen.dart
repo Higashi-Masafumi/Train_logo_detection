@@ -38,6 +38,12 @@ class _DetectionDetailScreenState extends ConsumerState<DetectionDetailScreen> {
     return Scaffold(
       appBar: AppBar(
         title: const Text('路線情報'),
+        backgroundColor: Colors.lightBlueAccent,
+        titleTextStyle: const TextStyle(
+          color: Colors.white,
+          fontSize: 20,
+          fontWeight: FontWeight.bold,
+        ),
       ),
       body: Column(
         children: [
@@ -91,8 +97,9 @@ class _DetectionDetailScreenState extends ConsumerState<DetectionDetailScreen> {
                     size: 40,
                   ),
                   title: Text(station.name),
-                  subtitle: station.connectedLines != null && station.connectedLines!.isNotEmpty
+                  trailing: station.connectedLines != null && station.connectedLines!.isNotEmpty
                       ? Row(
+                          mainAxisSize: MainAxisSize.min,
                           children: station.connectedLines!.map((line) {
                             return Padding(
                               padding: const EdgeInsets.only(right: 8.0),

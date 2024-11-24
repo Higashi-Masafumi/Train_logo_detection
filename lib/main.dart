@@ -48,6 +48,9 @@ class InitializationScreen extends StatefulWidget {
 }
 
 class _InitializationScreenState extends State<InitializationScreen> {
+  bool _isInitializing = true;
+  String? _errorMessage;
+
   @override
   void initState() {
     super.initState();
@@ -60,6 +63,10 @@ class _InitializationScreenState extends State<InitializationScreen> {
       final hasPermissions = await checkPermissions();
       if (!hasPermissions) {
         if (mounted) {
+          setState(() {
+            _isInitializing = false;
+            _errorMessage = '必要な権限が許可されていません';
+          });
           ScaffoldMessenger.of(context).showSnackBar(
             const SnackBar(content: Text('必要な権限が許可されていません')),
           );
@@ -73,6 +80,10 @@ class _InitializationScreenState extends State<InitializationScreen> {
       }
     } catch (e) {
       if (mounted) {
+        setState(() {
+          _isInitializing = false;
+          _errorMessage = '初期化エラー: $e';
+        });
         ScaffoldMessenger.of(context).showSnackBar(
           SnackBar(content: Text('初期化エラー: $e')),
         );
@@ -80,18 +91,42 @@ class _InitializationScreenState extends State<InitializationScreen> {
     }
   }
 
+  void _navigateToDetectionScreen() {
+    Navigator.pushReplacementNamed(context, '/realtime_detection');
+  }
+
   @override
   Widget build(BuildContext context) {
-    return const Scaffold(
+    return Scaffold(
       body: Center(
-        child: Column(
-          mainAxisAlignment: MainAxisAlignment.center,
-          children: [
-            CircularProgressIndicator(),
-            SizedBox(height: 16),
-            Text('アプリを初期化中...'),
-          ],
-        ),
+        child: _isInitializing
+            ? Column(
+                mainAxisAlignment: MainAxisAlignment.center,
+                children: [
+                  const CircularProgressIndicator(),
+                  const SizedBox(height: 16),
+                  const Text('アプリを初期化中...'),
+                  const SizedBox(height: 16),
+                  ElevatedButton(
+                    onPressed: _navigateToDetectionScreen,
+                    child: const Text('検出画面に移動'),
+                  ),
+                ],
+              )
+            : Column(
+                mainAxisAlignment: MainAxisAlignment.center,
+                children: [
+                  Text(
+                    _errorMessage ?? '初期化が完了しませんでした。',
+                    style: const TextStyle(color: Colors.red),
+                  ),
+                  const SizedBox(height: 16),
+                  ElevatedButton(
+                    onPressed: _navigateToDetectionScreen,
+                    child: const Text('検出画面に移動'),
+                  ),
+                ],
+              ),
       ),
     );
   }
