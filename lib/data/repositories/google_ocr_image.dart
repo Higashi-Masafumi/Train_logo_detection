@@ -1,14 +1,13 @@
 import 'package:train_logo_detection_app/domain/models/detection_result/detection_result.dart';
 import 'package:train_logo_detection_app/domain/repositories/ocr_image.dart';
 import '../services/google_ml_text_recognition.dart';
+import 'package:logging/logging.dart';
 
 class GoogleOcrImage implements OcrCroppedImage {
 
-  GoogleOcrImage({
-    required GoogleMlTextRecognition googleMlTextRecognition,
-  }) : _googleMlTextRecognition = googleMlTextRecognition;
+  final GoogleMlTextRecognition _googleMlTextRecognition = GoogleMlTextRecognition();
 
-  final GoogleMlTextRecognition _googleMlTextRecognition;
+  static final _logger = Logger('GoogleOcrImage');
 
   @override
   Future<DetectionResultWithText> ocrCroppedImage(DetectionResultWithImage detectionResultWithImage) async {
@@ -17,6 +16,8 @@ class GoogleOcrImage implements OcrCroppedImage {
       width: detectionResultWithImage.detectionResult.boundingBox.width,
       height: detectionResultWithImage.detectionResult.boundingBox.height,
     );
+
+    _logger.fine('recognizedText: $recognizedText');
 
     return DetectionResultWithText(
       detectionResultWithImage: detectionResultWithImage,

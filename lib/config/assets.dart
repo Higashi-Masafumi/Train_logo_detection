@@ -1,3 +1,4 @@
 class Assets {
-  static const yoloModel = 'assets/imgsz_320_192.mlmodel';
+  static const yoloModel = 'assets/metro_finder_yolo11.mlmodel';
+  static const trainRouteData = 'assets/train_data.db';
 }

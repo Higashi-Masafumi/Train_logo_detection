@@ -7,16 +7,14 @@ import 'package:train_logo_detection_app/domain/models/detection_result/detectio
 import 'dart:typed_data';
 
 class YoloDetectObject implements DetectObject {
-
-  YoloDetectObject({
-    required UltralyticsYoloModelService ultralyticsYoloModelService,
-  }) : _ultralyticsYoloModelService = ultralyticsYoloModelService;
-
-  final UltralyticsYoloModelService _ultralyticsYoloModelService;
+  final UltralyticsYoloModelService _ultralyticsYoloModelService =
+      UltralyticsYoloModelService();
 
   @override
   Future<List<DetectionResult>> detectObject(String imagePath) async {
-    final detections = await _ultralyticsYoloModelService.objectDetector.detect(imagePath: imagePath).catchError((e) {
+    final detections = await _ultralyticsYoloModelService.objectDetector
+        .detect(imagePath: imagePath)
+        .catchError((e) {
       throw Exception("Error detecting object: $e");
     });
     if (detections == null || detections.isEmpty) {
@@ -32,7 +30,8 @@ class YoloDetectObject implements DetectObject {
   }
 
   @override
-  Future<List<DetectionResult>> detectObjectFromBinary(Uint8List imageBinary) async {
+  Future<List<DetectionResult>> detectObjectFromBinary(
+      Uint8List imageBinary) async {
     final appSupportDir = await getApplicationSupportDirectory();
     final imagePath = '${appSupportDir.path}/image.jpg';
     final imageFile = File(imagePath);

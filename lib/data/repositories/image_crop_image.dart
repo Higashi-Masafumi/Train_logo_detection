@@ -4,15 +4,11 @@ import 'package:train_logo_detection_app/domain/repositories/crop_image.dart';
 import '../services/image_service.dart';
 
 class ImageCropImage implements CropImageofDetectedObject {
-
-  ImageCropImage({
-    required ImageService imageService,
-  }) : _imageService = imageService;
-
-  final ImageService _imageService;
+  final ImageService _imageService = ImageService();
 
   @override
-  Future<DetectionResultWithImage> cropImage(DetectionResult detectionResult, Uint8List imageBinary) async {
+  Future<DetectionResultWithImage> cropImage(
+      DetectionResult detectionResult, Uint8List imageBinary) async {
     final croppedImage = _imageService.cropImage(
       imageBinary,
       detectionResult.boundingBox,
