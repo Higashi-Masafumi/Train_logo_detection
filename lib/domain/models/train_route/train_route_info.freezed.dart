@@ -645,3 +645,192 @@ abstract class _TrainRouteInfo implements TrainRouteInfo {
   _$$TrainRouteInfoImplCopyWith<_$TrainRouteInfoImpl> get copyWith =>
       throw _privateConstructorUsedError;
 }
+
+/// @nodoc
+mixin _$TrainRouteInfoWithDetectionResult {
+  TrainRouteInfo get trainRouteInfo => throw _privateConstructorUsedError;
+  DetectionResult get detectionResult => throw _privateConstructorUsedError;
+
+  /// Create a copy of TrainRouteInfoWithDetectionResult
+  /// with the given fields replaced by the non-null parameter values.
+  @JsonKey(includeFromJson: false, includeToJson: false)
+  $TrainRouteInfoWithDetectionResultCopyWith<TrainRouteInfoWithDetectionResult>
+      get copyWith => throw _privateConstructorUsedError;
+}
+
+/// @nodoc
+abstract class $TrainRouteInfoWithDetectionResultCopyWith<$Res> {
+  factory $TrainRouteInfoWithDetectionResultCopyWith(
+          TrainRouteInfoWithDetectionResult value,
+          $Res Function(TrainRouteInfoWithDetectionResult) then) =
+      _$TrainRouteInfoWithDetectionResultCopyWithImpl<$Res,
+          TrainRouteInfoWithDetectionResult>;
+  @useResult
+  $Res call({TrainRouteInfo trainRouteInfo, DetectionResult detectionResult});
+
+  $TrainRouteInfoCopyWith<$Res> get trainRouteInfo;
+  $DetectionResultCopyWith<$Res> get detectionResult;
+}
+
+/// @nodoc
+class _$TrainRouteInfoWithDetectionResultCopyWithImpl<$Res,
+        $Val extends TrainRouteInfoWithDetectionResult>
+    implements $TrainRouteInfoWithDetectionResultCopyWith<$Res> {
+  _$TrainRouteInfoWithDetectionResultCopyWithImpl(this._value, this._then);
+
+  // ignore: unused_field
+  final $Val _value;
+  // ignore: unused_field
+  final $Res Function($Val) _then;
+
+  /// Create a copy of TrainRouteInfoWithDetectionResult
+  /// with the given fields replaced by the non-null parameter values.
+  @pragma('vm:prefer-inline')
+  @override
+  $Res call({
+    Object? trainRouteInfo = null,
+    Object? detectionResult = null,
+  }) {
+    return _then(_value.copyWith(
+      trainRouteInfo: null == trainRouteInfo
+          ? _value.trainRouteInfo
+          : trainRouteInfo // ignore: cast_nullable_to_non_nullable
+              as TrainRouteInfo,
+      detectionResult: null == detectionResult
+          ? _value.detectionResult
+          : detectionResult // ignore: cast_nullable_to_non_nullable
+              as DetectionResult,
+    ) as $Val);
+  }
+
+  /// Create a copy of TrainRouteInfoWithDetectionResult
+  /// with the given fields replaced by the non-null parameter values.
+  @override
+  @pragma('vm:prefer-inline')
+  $TrainRouteInfoCopyWith<$Res> get trainRouteInfo {
+    return $TrainRouteInfoCopyWith<$Res>(_value.trainRouteInfo, (value) {
+      return _then(_value.copyWith(trainRouteInfo: value) as $Val);
+    });
+  }
+
+  /// Create a copy of TrainRouteInfoWithDetectionResult
+  /// with the given fields replaced by the non-null parameter values.
+  @override
+  @pragma('vm:prefer-inline')
+  $DetectionResultCopyWith<$Res> get detectionResult {
+    return $DetectionResultCopyWith<$Res>(_value.detectionResult, (value) {
+      return _then(_value.copyWith(detectionResult: value) as $Val);
+    });
+  }
+}
+
+/// @nodoc
+abstract class _$$TrainRouteInfoWithDetectionResultImplCopyWith<$Res>
+    implements $TrainRouteInfoWithDetectionResultCopyWith<$Res> {
+  factory _$$TrainRouteInfoWithDetectionResultImplCopyWith(
+          _$TrainRouteInfoWithDetectionResultImpl value,
+          $Res Function(_$TrainRouteInfoWithDetectionResultImpl) then) =
+      __$$TrainRouteInfoWithDetectionResultImplCopyWithImpl<$Res>;
+  @override
+  @useResult
+  $Res call({TrainRouteInfo trainRouteInfo, DetectionResult detectionResult});
+
+  @override
+  $TrainRouteInfoCopyWith<$Res> get trainRouteInfo;
+  @override
+  $DetectionResultCopyWith<$Res> get detectionResult;
+}
+
+/// @nodoc
+class __$$TrainRouteInfoWithDetectionResultImplCopyWithImpl<$Res>
+    extends _$TrainRouteInfoWithDetectionResultCopyWithImpl<$Res,
+        _$TrainRouteInfoWithDetectionResultImpl>
+    implements _$$TrainRouteInfoWithDetectionResultImplCopyWith<$Res> {
+  __$$TrainRouteInfoWithDetectionResultImplCopyWithImpl(
+      _$TrainRouteInfoWithDetectionResultImpl _value,
+      $Res Function(_$TrainRouteInfoWithDetectionResultImpl) _then)
+      : super(_value, _then);
+
+  /// Create a copy of TrainRouteInfoWithDetectionResult
+  /// with the given fields replaced by the non-null parameter values.
+  @pragma('vm:prefer-inline')
+  @override
+  $Res call({
+    Object? trainRouteInfo = null,
+    Object? detectionResult = null,
+  }) {
+    return _then(_$TrainRouteInfoWithDetectionResultImpl(
+      trainRouteInfo: null == trainRouteInfo
+          ? _value.trainRouteInfo
+          : trainRouteInfo // ignore: cast_nullable_to_non_nullable
+              as TrainRouteInfo,
+      detectionResult: null == detectionResult
+          ? _value.detectionResult
+          : detectionResult // ignore: cast_nullable_to_non_nullable
+              as DetectionResult,
+    ));
+  }
+}
+
+/// @nodoc
+
+class _$TrainRouteInfoWithDetectionResultImpl
+    implements _TrainRouteInfoWithDetectionResult {
+  const _$TrainRouteInfoWithDetectionResultImpl(
+      {required this.trainRouteInfo, required this.detectionResult});
+
+  @override
+  final TrainRouteInfo trainRouteInfo;
+  @override
+  final DetectionResult detectionResult;
+
+  @override
+  String toString() {
+    return 'TrainRouteInfoWithDetectionResult(trainRouteInfo: $trainRouteInfo, detectionResult: $detectionResult)';
+  }
+
+  @override
+  bool operator ==(Object other) {
+    return identical(this, other) ||
+        (other.runtimeType == runtimeType &&
+            other is _$TrainRouteInfoWithDetectionResultImpl &&
+            (identical(other.trainRouteInfo, trainRouteInfo) ||
+                other.trainRouteInfo == trainRouteInfo) &&
+            (identical(other.detectionResult, detectionResult) ||
+                other.detectionResult == detectionResult));
+  }
+
+  @override
+  int get hashCode => Object.hash(runtimeType, trainRouteInfo, detectionResult);
+
+  /// Create a copy of TrainRouteInfoWithDetectionResult
+  /// with the given fields replaced by the non-null parameter values.
+  @JsonKey(includeFromJson: false, includeToJson: false)
+  @override
+  @pragma('vm:prefer-inline')
+  _$$TrainRouteInfoWithDetectionResultImplCopyWith<
+          _$TrainRouteInfoWithDetectionResultImpl>
+      get copyWith => __$$TrainRouteInfoWithDetectionResultImplCopyWithImpl<
+          _$TrainRouteInfoWithDetectionResultImpl>(this, _$identity);
+}
+
+abstract class _TrainRouteInfoWithDetectionResult
+    implements TrainRouteInfoWithDetectionResult {
+  const factory _TrainRouteInfoWithDetectionResult(
+          {required final TrainRouteInfo trainRouteInfo,
+          required final DetectionResult detectionResult}) =
+      _$TrainRouteInfoWithDetectionResultImpl;
+
+  @override
+  TrainRouteInfo get trainRouteInfo;
+  @override
+  DetectionResult get detectionResult;
+
+  /// Create a copy of TrainRouteInfoWithDetectionResult
+  /// with the given fields replaced by the non-null parameter values.
+  @override
+  @JsonKey(includeFromJson: false, includeToJson: false)
+  _$$TrainRouteInfoWithDetectionResultImplCopyWith<
+          _$TrainRouteInfoWithDetectionResultImpl>
+      get copyWith => throw _privateConstructorUsedError;
+}

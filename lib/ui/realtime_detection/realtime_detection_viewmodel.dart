@@ -1,3 +1,5 @@
+import 'dart:async';
+
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:flutter/foundation.dart';
 import 'package:train_logo_detection_app/data/services/yolo_camera.dart';
@@ -9,7 +11,6 @@ import 'package:train_logo_detection_app/data/repositories/image_crop_image.dart
 import 'package:train_logo_detection_app/data/repositories/google_ocr_image.dart';
 import 'package:train_logo_detection_app/domain/models/logo_detection/train_logo_detection.dart';
 import 'package:train_logo_detection_app/domain/usecase/verify_detected_object.dart';
-
 
 final realtimeDetectionViewmodelProvider =
     ChangeNotifierProvider((ref) => RealtimeDetectionViewmodel());
@@ -52,6 +53,10 @@ class RealtimeDetectionViewmodel extends ChangeNotifier {
   // get the object detector
   ObjectDetector? get objectDetector =>
       _ultralyticsYoloModelService.objectDetector;
+
+  Stream<List<DetectedObject?>?> get detectedObjectStream {
+    return _ultralyticsYoloModelService.detectionResultStream;
+  }
 
   // start the camera
   Future<void> startCamera() async {
@@ -131,6 +136,7 @@ class RealtimeDetectionViewmodel extends ChangeNotifier {
   // get the detecting status
   bool get isDetecting => _isDetecting;
 
+  // dispose
   @override
   void dispose() {
     _ultralyticsYoloModelService.dispose();

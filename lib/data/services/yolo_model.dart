@@ -20,6 +20,7 @@ class UltralyticsYoloModelService {
   // private fields
   late LocalYoloModel _localYoloModel;
   late ObjectDetector _objectDetector;
+  late Stream<List<DetectedObject?>?> _detectionResultStream;
 
   bool _isInitialized = false;
   bool _isObjectDetectorInitialized = false;
@@ -76,6 +77,14 @@ class UltralyticsYoloModelService {
       throw Exception("ObjectDetector not initialized.");
     }
     return _objectDetector;
+  }
+
+  Stream<List<DetectedObject?>?> get detectionResultStream {
+    if (!_isObjectDetectorInitialized) {
+      throw Exception("ObjectDetector not initialized.");
+    }
+    _detectionResultStream = _objectDetector.detectionResultStream;
+    return _objectDetector.detectionResultStream;
   }
 
   // dispose

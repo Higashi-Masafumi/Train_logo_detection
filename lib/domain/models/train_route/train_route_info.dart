@@ -1,5 +1,6 @@
 import 'package:freezed_annotation/freezed_annotation.dart';
 import 'package:train_logo_detection_app/config/train_logo.dart';
+import '../detection_result/detection_result.dart';
 import 'package:flutter/material.dart';
 
 part 'train_route_info.freezed.dart';
@@ -33,4 +34,13 @@ class TrainRouteInfo with _$TrainRouteInfo {
     required List<Station> stations,
     Station? currentStation,
   }) = _TrainRouteInfo;
+}
+
+
+@freezed
+class TrainRouteInfoWithDetectionResult with _$TrainRouteInfoWithDetectionResult {
+  const factory TrainRouteInfoWithDetectionResult({
+    required TrainRouteInfo trainRouteInfo,
+    required DetectionResult detectionResult,
+  }) = _TrainRouteInfoWithDetectionResult;
 }
