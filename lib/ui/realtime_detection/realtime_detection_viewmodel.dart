@@ -6,11 +6,14 @@ import 'package:train_logo_detection_app/data/services/yolo_camera.dart';
 import 'package:train_logo_detection_app/data/services/yolo_model.dart';
 import 'package:riverpod_annotation/riverpod_annotation.dart';
 import 'package:train_logo_detection_app/domain/models/detection_result/detection_result.dart';
+import 'package:train_logo_detection_app/domain/models/train_route/train_route_info.dart';
 import 'package:ultralytics_yolo/ultralytics_yolo.dart';
 import 'package:train_logo_detection_app/data/repositories/image_crop_image.dart';
 import 'package:train_logo_detection_app/data/repositories/google_ocr_image.dart';
+import 'package:train_logo_detection_app/data/repositories/dev_train_route_repository.dart';
 import 'package:train_logo_detection_app/domain/models/logo_detection/train_logo_detection.dart';
 import 'package:train_logo_detection_app/domain/usecase/verify_detected_object.dart';
+import 'package:train_logo_detection_app/domain/usecase/search_station.dart';
 
 final realtimeDetectionViewmodelProvider =
     ChangeNotifierProvider((ref) => RealtimeDetectionViewmodel());
@@ -26,17 +29,30 @@ class RealtimeDetectionViewmodel extends ChangeNotifier {
       VerifyDetectedObjectUseCase(
           cropImageofDetectedObject: ImageCropImage(),
           ocrCroppedImage: GoogleOcrImage());
+  final SearchStationUseCase _searchStationUseCase =
+      SearchStationUseCase(trainRouteRepository: DevTrainRouteRepository());
 
+  // 現在の画面上での検出オブジェクト
+  List<DetectedObject?>? _detections;
   // 画面で選択された検出オブジェクト
   DetectionResult? _selectedDetection;
+  // 検出されたロゴの検証結果
   TrainLogoDetectionResult? _trainLogoDetectionResult;
+  // 検出中かどうか
   bool _isDetecting = false;
+  // 検索候補の駅リスト
+  List<Station> _searchStationList = [];
+  // 検索対象の駅
+  Station? _searchStation;
+  // 検索中かどうか
+  bool _isSearching = false;
 
   Future<void> initialize() async {
     try {
       await _ultralyticsYoloModelService.initialize();
       await _ultralyticsYoloModelService.initializeObjectDetector();
       _yoloCameraService.initialize();
+      _searchStationList = await DevTrainRouteRepository().getAllStations();
     } catch (e) {
       throw Exception('Failed to initialize: $e');
     }
@@ -55,7 +71,83 @@ class RealtimeDetectionViewmodel extends ChangeNotifier {
       _ultralyticsYoloModelService.objectDetector;
 
   Stream<List<DetectedObject?>?> get detectedObjectStream {
+    // add listener to the detection result stream
+    _ultralyticsYoloModelService.detectionResultStream.listen((detections) {
+      _detections = detections;
+      notifyListeners();
+    });
+    // get the detection result stream
     return _ultralyticsYoloModelService.detectionResultStream;
+  }
+
+  // get detections
+  List<DetectedObject>? get detections => _detections?.whereType<DetectedObject>().toList();
+
+  // get the search station list
+  List<Station> get searchStationList => _searchStationList;
+
+  // get is searching
+  bool get isSearching => _isSearching;
+
+  // filter station list by search word
+  List<Station> filterStationList(String searchWord) {
+    _searchStationList = _searchStationList
+        .where((station) => station.name.contains(searchWord))
+        .toList();
+    notifyListeners();
+    return _searchStationList;
+  }
+
+  // set the search station
+  void setSearchStation(Station station) {
+    _searchStation = station;
+    notifyListeners();
+  }
+
+  void setSearching(bool isSearching) {
+    _isSearching = isSearching;
+    notifyListeners();
+  }
+
+  // search the train route info by search station
+  Future<void> searchTrainRouteInfo() async {
+    try {
+      _isSearching = true;
+      notifyListeners();
+      final trainRouteInfoWithDetectionResult = await _searchStationUseCase
+          .searchStation(
+            _detections?.map((detection) {
+              return DetectionResult(
+                label: detection!.label,
+                confidence: detection.confidence,
+                boundingBox: detection.boundingBox,
+              );
+            }).toList() ??
+                [],
+            _searchStation!,
+          );
+      // set filterd detection result to detections
+      _detections = trainRouteInfoWithDetectionResult
+          .map((e) => 
+            DetectedObject(
+              label: e.detectionResult.label,
+              confidence: e.detectionResult.confidence,
+              boundingBox: e.detectionResult.boundingBox,
+              index: 0,
+            )
+          ).toList();
+      notifyListeners();
+      debugPrint(
+          'trainRouteInfoWithDetectionResult: $trainRouteInfoWithDetectionResult');
+    } catch (e) {
+      throw Exception('Failed to get train route info: $e');
+    }
+  }
+
+  // clear the search station
+  void clearSearchStation() {
+    _searchStation = null;
+    notifyListeners();
   }
 
   // start the camera
@@ -85,6 +177,8 @@ class RealtimeDetectionViewmodel extends ChangeNotifier {
       throw Exception('Failed to pause prediction: $e');
     }
   }
+
+  // search the detected object
 
   // set the selected detection
   void _setSelectedDetection(DetectedObject detectedObject) {

@@ -5,4 +5,7 @@ abstract class TrainRouteRepository {
 
   // detectionResultから路線情報を取得する
   Future<TrainRouteInfo> getTrainRouteInfo(TrainLogoDetectionResult trainLogoDetectionResult);
+
+  // 全ての駅のリストを取得する
+  Future<List<Station>> getAllStations();
 }

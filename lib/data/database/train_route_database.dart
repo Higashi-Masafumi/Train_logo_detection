@@ -85,4 +85,16 @@ class TrainRouteDatabaseHelper {
     });
   }
 
+  // 全てのstationsを取得（ただし同じ駅名が複数ある場合は、一つの駅名のみを取得）
+  Future<List<Station>> getAllStations() async {
+    final db = await instance.database;
+    final maps = await db.rawQuery('''
+      SELECT DISTINCT stations.* FROM stations
+    ''');
+
+    return List.generate(maps.length, (i) {
+      return Station.fromMap(maps[i]);
+    });
+  }
+
 }

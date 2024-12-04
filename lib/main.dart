@@ -2,7 +2,6 @@ import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:train_logo_detection_app/ui/realtime_detection/realtime_detection_screen.dart';
 import 'package:train_logo_detection_app/ui/detection_detail.dart/detection_detail_screen.dart';
-import 'package:train_logo_detection_app/ui/detection_search/detection_search_screen.dart';
 import 'package:train_logo_detection_app/utils/check_permission.dart';
 import 'package:train_logo_detection_app/data/services/yolo_model.dart';
 import 'package:train_logo_detection_app/data/services/yolo_camera.dart';
@@ -35,7 +34,6 @@ class MyApp extends StatelessWidget {
       routes: {
         '/realtime_detection': (context) => const RealtimeDetectionScreen(),
         '/train_route_info': (context) => const DetectionDetailScreen(),
-        '/detection_search': (context) => const DetectionSearchScreen(),
       },
     );
   }
@@ -54,6 +52,7 @@ class _InitializationScreenState extends ConsumerState<InitializationScreen>
   bool _isInitializing = true;
   String? _errorMessage;
   late final TabController _tabController;
+  late int currentPageIndex = 0;
 
   @override
   void initState() {
@@ -108,28 +107,32 @@ class _InitializationScreenState extends ConsumerState<InitializationScreen>
 
     // 初期化完了後のメイン画面
     return Scaffold(
-      appBar: AppBar(
-        title: const Text('Train Logo Detection App'),
+      bottomNavigationBar: NavigationBar(
+        labelBehavior: NavigationDestinationLabelBehavior.alwaysShow,
+        selectedIndex: currentPageIndex,
         backgroundColor: Colors.lightBlueAccent,
-        bottom: TabBar(
-          controller: _tabController,
-          tabs: const [
-            Tab(
-              icon: Icon(Icons.camera_alt),
-              text: 'リアルタイム検出',
-            ),
-            Tab(
-              icon: Icon(Icons.search),
-              text: '検索',
-            ),
-          ],
-        ),
+        onDestinationSelected: (index) {
+          setState(() {
+            currentPageIndex = index;
+            _tabController.animateTo(index);
+          });
+        },
+        destinations:const [
+          NavigationDestination(
+            icon: Icon(Icons.camera_alt),
+            label: 'リアルタイム検出',
+          ),
+          NavigationDestination(
+            icon: Icon(Icons.train),
+            label: '検出結果',
+          ),
+        ],
       ),
       body: TabBarView(
         controller: _tabController,
         children: const [
           RealtimeDetectionScreen(),
-          DetectionSearchScreen(),
+          DetectionDetailScreen(),
         ],
       ),
     );

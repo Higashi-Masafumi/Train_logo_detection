@@ -63,4 +63,19 @@ class DevTrainRouteRepository implements TrainRouteRepository {
       currentStation: null,
     );
   }
+
+  @override
+  Future<List<Station>> getAllStations() async {
+    final stations = await _trainRouteDatabaseHelper.getAllStations();
+    return stations.map((station) {
+      return Station(
+        id: station.id!,
+        lineId: station.lineId,
+        name: station.name,
+        stationNumber: station.stationNumber,
+        connectedLines: [],
+        iconUrl: station.iconUrl,
+      );
+    }).toList();
+  }
 }
