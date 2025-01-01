@@ -81,7 +81,8 @@ class RealtimeDetectionViewmodel extends ChangeNotifier {
   }
 
   // get detections
-  List<DetectedObject>? get detections => _detections?.whereType<DetectedObject>().toList();
+  List<DetectedObject>? get detections =>
+      _detections?.whereType<DetectedObject>().toList();
 
   // get the search station list
   List<Station> get searchStationList => _searchStationList;
@@ -114,28 +115,27 @@ class RealtimeDetectionViewmodel extends ChangeNotifier {
     try {
       _isSearching = true;
       notifyListeners();
-      final trainRouteInfoWithDetectionResult = await _searchStationUseCase
-          .searchStation(
-            _detections?.map((detection) {
+      final trainRouteInfoWithDetectionResult =
+          await _searchStationUseCase.searchStation(
+        _detections?.map((detection) {
               return DetectionResult(
                 label: detection!.label,
                 confidence: detection.confidence,
                 boundingBox: detection.boundingBox,
               );
             }).toList() ??
-                [],
-            _searchStation!,
-          );
+            [],
+        _searchStation!,
+      );
       // set filterd detection result to detections
       _detections = trainRouteInfoWithDetectionResult
-          .map((e) => 
-            DetectedObject(
-              label: e.detectionResult.label,
-              confidence: e.detectionResult.confidence,
-              boundingBox: e.detectionResult.boundingBox,
-              index: 0,
-            )
-          ).toList();
+          .map((e) => DetectedObject(
+                label: e.detectionResult.label,
+                confidence: e.detectionResult.confidence,
+                boundingBox: e.detectionResult.boundingBox,
+                index: 0,
+              ))
+          .toList();
       notifyListeners();
       debugPrint(
           'trainRouteInfoWithDetectionResult: $trainRouteInfoWithDetectionResult');
@@ -145,8 +145,9 @@ class RealtimeDetectionViewmodel extends ChangeNotifier {
   }
 
   // clear the search station
-  void clearSearchStation() {
+  Future<void> clearSearchStation() async {
     _searchStation = null;
+    _searchStationList = await DevTrainRouteRepository().getAllStations();
     notifyListeners();
   }
 

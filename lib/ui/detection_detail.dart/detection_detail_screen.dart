@@ -5,23 +5,29 @@ import 'package:train_logo_detection_app/ui/core/train_logo.dart';
 import 'package:train_logo_detection_app/config/train_logo.dart';
 import 'package:train_logo_detection_app/ui/realtime_detection/realtime_detection_viewmodel.dart';
 
-
 class DetectionDetailScreen extends ConsumerStatefulWidget {
   const DetectionDetailScreen({super.key});
 
   @override
-  ConsumerState<DetectionDetailScreen> createState() => _DetectionDetailScreenState();
+  ConsumerState<DetectionDetailScreen> createState() =>
+      _DetectionDetailScreenState();
 }
 
 class _DetectionDetailScreenState extends ConsumerState<DetectionDetailScreen> {
-
   @override
   void initState() {
     super.initState();
     WidgetsBinding.instance.addPostFrameCallback((_) {
-      ref.read(trainRouteViewModelProvider).fetchTrainRouteInfo(
-        ref.read(realtimeDetectionViewmodelProvider).trainLogoDetectionResult!,
-      );
+      final detectionResult =
+          ref.read(realtimeDetectionViewmodelProvider).trainLogoDetectionResult;
+      if (detectionResult != null) {
+        ref
+            .read(trainRouteViewModelProvider)
+            .fetchTrainRouteInfo(detectionResult);
+      } else {
+        // detectionResultがnullの場合の処理
+        debugPrint('No detection result available.');
+      }
     });
   }
 
@@ -56,7 +62,8 @@ class _DetectionDetailScreenState extends ConsumerState<DetectionDetailScreen> {
                 // 路線アイコン
                 TrainLineLogo(
                   circleColor: trainColor ?? Colors.black,
-                  text: TrainLineLabelMapper.getLogoText(trainRouteInfo.line.label),
+                  text: TrainLineLabelMapper.getLogoText(
+                      trainRouteInfo.line.label),
                   size: 60,
                 ),
                 const SizedBox(width: 16),
@@ -65,7 +72,8 @@ class _DetectionDetailScreenState extends ConsumerState<DetectionDetailScreen> {
                   crossAxisAlignment: CrossAxisAlignment.start,
                   children: [
                     Text(
-                      TrainLineLabelMapper.getLineNameJapanese(trainRouteInfo.line.label),
+                      TrainLineLabelMapper.getLineNameJapanese(
+                          trainRouteInfo.line.label),
                       style: const TextStyle(
                         color: Colors.white,
                         fontSize: 24,
@@ -73,7 +81,8 @@ class _DetectionDetailScreenState extends ConsumerState<DetectionDetailScreen> {
                       ),
                     ),
                     Text(
-                      TrainLineLabelMapper.getLineNameEnglish(trainRouteInfo.line.label),
+                      TrainLineLabelMapper.getLineNameEnglish(
+                          trainRouteInfo.line.label),
                       style: const TextStyle(
                         color: Colors.white70,
                         fontSize: 16,
@@ -97,7 +106,8 @@ class _DetectionDetailScreenState extends ConsumerState<DetectionDetailScreen> {
                     size: 40,
                   ),
                   title: Text(station.name),
-                  trailing: station.connectedLines != null && station.connectedLines!.isNotEmpty
+                  trailing: station.connectedLines != null &&
+                          station.connectedLines!.isNotEmpty
                       ? Row(
                           mainAxisSize: MainAxisSize.min,
                           children: station.connectedLines!.map((line) {
@@ -105,7 +115,8 @@ class _DetectionDetailScreenState extends ConsumerState<DetectionDetailScreen> {
                               padding: const EdgeInsets.only(right: 8.0),
                               child: TrainLineLogo(
                                 circleColor: line.color,
-                                text: TrainLineLabelMapper.getLogoText(line.label),
+                                text: TrainLineLabelMapper.getLogoText(
+                                    line.label),
                                 size: 24,
                               ),
                             );

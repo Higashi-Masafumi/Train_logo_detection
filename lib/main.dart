@@ -51,20 +51,12 @@ class _InitializationScreenState extends ConsumerState<InitializationScreen>
     with TickerProviderStateMixin {
   bool _isInitializing = true;
   String? _errorMessage;
-  late final TabController _tabController;
   late int currentPageIndex = 0;
 
   @override
   void initState() {
     super.initState();
-    _tabController = TabController(length: 2, vsync: this);
     _initialize();
-  }
-
-  @override
-  void dispose() {
-    _tabController.dispose();
-    super.dispose();
   }
 
   @override
@@ -107,6 +99,15 @@ class _InitializationScreenState extends ConsumerState<InitializationScreen>
 
     // 初期化完了後のメイン画面
     return Scaffold(
+      appBar: AppBar(
+        title: const Text('Train Logo Detection App'),
+        backgroundColor: Colors.lightBlueAccent,
+        titleTextStyle: const TextStyle(
+          color: Colors.white,
+          fontSize: 20,
+          fontWeight: FontWeight.bold,
+        ),
+      ),
       bottomNavigationBar: NavigationBar(
         labelBehavior: NavigationDestinationLabelBehavior.alwaysShow,
         selectedIndex: currentPageIndex,
@@ -114,10 +115,9 @@ class _InitializationScreenState extends ConsumerState<InitializationScreen>
         onDestinationSelected: (index) {
           setState(() {
             currentPageIndex = index;
-            _tabController.animateTo(index);
           });
         },
-        destinations:const [
+        destinations: const [
           NavigationDestination(
             icon: Icon(Icons.camera_alt),
             label: 'リアルタイム検出',
@@ -128,13 +128,10 @@ class _InitializationScreenState extends ConsumerState<InitializationScreen>
           ),
         ],
       ),
-      body: TabBarView(
-        controller: _tabController,
-        children: const [
-          RealtimeDetectionScreen(),
-          DetectionDetailScreen(),
-        ],
-      ),
+      body: const <Widget>[
+        RealtimeDetectionScreen(),
+        DetectionDetailScreen(),
+      ][currentPageIndex],
     );
   }
 
