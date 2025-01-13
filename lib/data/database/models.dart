@@ -37,7 +37,6 @@ class Line {
   }
 }
 
-
 class Station {
   final int? id;
   final int lineId;
@@ -73,7 +72,6 @@ class Station {
     };
   }
 }
-
 
 class Connection {
   final int? id;

@@ -6,7 +6,7 @@ import 'package:train_logo_detection_app/utils/check_permission.dart';
 import 'package:train_logo_detection_app/data/services/yolo_model.dart';
 import 'package:train_logo_detection_app/data/services/yolo_camera.dart';
 import 'package:train_logo_detection_app/data/services/google_ml_text_recognition.dart';
-
+import 'package:permission_handler/permission_handler.dart';
 void main() async {
   WidgetsFlutterBinding.ensureInitialized(); // Flutter Engineの初期化
   await UltralyticsYoloModelService().initialize(); // YOLOモデルの初期化
@@ -95,6 +95,11 @@ class _InitializationScreenState extends State<InitializationScreen> {
     Navigator.pushReplacementNamed(context, '/realtime_detection');
   }
 
+  Future<void> _navigateToSettings() async {
+    // permission_handlerで端末設定画面へ
+    await openAppSettings();
+  }
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -119,6 +124,11 @@ class _InitializationScreenState extends State<InitializationScreen> {
                   Text(
                     _errorMessage ?? '初期化が完了しませんでした。',
                     style: const TextStyle(color: Colors.red),
+                  ),
+                  const SizedBox(height: 16),
+                  ElevatedButton(
+                    onPressed: _navigateToSettings,
+                    child: const Text('設定画面に移動'),
                   ),
                   const SizedBox(height: 16),
                   ElevatedButton(

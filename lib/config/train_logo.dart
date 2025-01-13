@@ -88,17 +88,17 @@ class TrainLineLabelMapper {
   };
 
   static const Map<TrainLineLabel, String> _lineNameJapanese = {
-    TrainLineLabel.asakusa: '都営浅草線',
+    TrainLineLabel.asakusa: '浅草線',
     TrainLineLabel.chiyoda: '千代田線',
     TrainLineLabel.fukutoshin: '副都心線',
     TrainLineLabel.ginza: '銀座線',
     TrainLineLabel.hanzoumon: '半蔵門線',
     TrainLineLabel.hibiya: '日比谷線',
     TrainLineLabel.marunouchi: '丸ノ内線',
-    TrainLineLabel.mita: '都営三田線',
+    TrainLineLabel.mita: '三田線',
     TrainLineLabel.nannboku: '南北線',
-    TrainLineLabel.ooedo: '都営大江戸線',
-    TrainLineLabel.shinjyuku: '都営新宿線',
+    TrainLineLabel.ooedo: '大江戸線',
+    TrainLineLabel.shinjyuku: '新宿線',
     TrainLineLabel.touzai: '東西線',
     TrainLineLabel.yurakuchyo: '有楽町線',
   };

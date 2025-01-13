@@ -41,8 +41,7 @@ class _RealtimeDetectionScreenState
           IconButton(
             icon: const Icon(Icons.refresh_rounded),
             // モデルの再読み込み
-            onPressed: () {
-            },
+            onPressed: () {},
           ),
         ],
       ),
@@ -122,7 +121,6 @@ class _RealtimeDetectionScreenState
     );
   }
 }
-
 // // 検出された物体を囲むボックスを表示するウィジェット
 // class DetectionBox extends StatelessWidget {
 //   final DetectedObject detection;

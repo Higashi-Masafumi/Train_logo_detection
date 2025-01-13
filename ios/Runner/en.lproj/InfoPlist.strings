@@ -17,3 +17,7 @@ NSPhotoLibraryUsageDescription = "Access to the photo library may be requested f
 
 /* NSMicrophoneUsageDescription */
 NSMicrophoneUsageDescription = "The microphone may be used to detect sounds";
+
+/* NSLocationWhenInUseUsageDescription */
+NSLocationWhenInUseUsageDescription = "This app uses location information";
+
