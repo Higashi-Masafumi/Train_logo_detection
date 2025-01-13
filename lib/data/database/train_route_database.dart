@@ -84,5 +84,4 @@ class TrainRouteDatabaseHelper {
       return Line.fromMap(maps[i]);
     });
   }
-
 }

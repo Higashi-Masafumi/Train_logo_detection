@@ -32,6 +32,8 @@
 		<string>画像に対して物体検出を行うためにフォトライブラリにアクセスを求める場合があります</string>
 		<key>NSMicrophoneUsageDescription</key>
 		<string>マイクロフォンを音を検出するために利用する場合があります</string>
+		<key>NSLocationWhenInUseUsageDescription</key>
+		<string>このアプリは位置情報を利用します</string>
 		<key>NSAppTransportSecurity</key>
 		<dict>
 			<key>NSAllowsArbitraryLoads</key>

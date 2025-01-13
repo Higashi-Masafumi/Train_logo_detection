@@ -16,10 +16,17 @@ final _privateConstructorUsedError = UnsupportedError(
 
 /// @nodoc
 mixin _$TrainLine {
-  int get id => throw _privateConstructorUsedError;
-  String get name => throw _privateConstructorUsedError;
-  TrainLineLabel get label => throw _privateConstructorUsedError;
-  Color get color => throw _privateConstructorUsedError;
+  String get id => throw _privateConstructorUsedError;
+  String get type => throw _privateConstructorUsedError;
+  String get title => throw _privateConstructorUsedError;
+  String get owlSameAs => throw _privateConstructorUsedError;
+  String get color => throw _privateConstructorUsedError;
+  String get lineCode => throw _privateConstructorUsedError;
+  String get operatorId => throw _privateConstructorUsedError;
+  Map<String, String> get lineTitle => throw _privateConstructorUsedError;
+  List<String> get stationOrder => throw _privateConstructorUsedError; // 駅名のリスト
+  String get ascendingDirection => throw _privateConstructorUsedError;
+  String get descendingDirection => throw _privateConstructorUsedError;
 
   /// Create a copy of TrainLine
   /// with the given fields replaced by the non-null parameter values.
@@ -33,7 +40,18 @@ abstract class $TrainLineCopyWith<$Res> {
   factory $TrainLineCopyWith(TrainLine value, $Res Function(TrainLine) then) =
       _$TrainLineCopyWithImpl<$Res, TrainLine>;
   @useResult
-  $Res call({int id, String name, TrainLineLabel label, Color color});
+  $Res call(
+      {String id,
+      String type,
+      String title,
+      String owlSameAs,
+      String color,
+      String lineCode,
+      String operatorId,
+      Map<String, String> lineTitle,
+      List<String> stationOrder,
+      String ascendingDirection,
+      String descendingDirection});
 }
 
 /// @nodoc
@@ -52,27 +70,62 @@ class _$TrainLineCopyWithImpl<$Res, $Val extends TrainLine>
   @override
   $Res call({
     Object? id = null,
-    Object? name = null,
-    Object? label = null,
+    Object? type = null,
+    Object? title = null,
+    Object? owlSameAs = null,
     Object? color = null,
+    Object? lineCode = null,
+    Object? operatorId = null,
+    Object? lineTitle = null,
+    Object? stationOrder = null,
+    Object? ascendingDirection = null,
+    Object? descendingDirection = null,
   }) {
     return _then(_value.copyWith(
       id: null == id
           ? _value.id
           : id // ignore: cast_nullable_to_non_nullable
-              as int,
-      name: null == name
-          ? _value.name
-          : name // ignore: cast_nullable_to_non_nullable
               as String,
-      label: null == label
-          ? _value.label
-          : label // ignore: cast_nullable_to_non_nullable
-              as TrainLineLabel,
+      type: null == type
+          ? _value.type
+          : type // ignore: cast_nullable_to_non_nullable
+              as String,
+      title: null == title
+          ? _value.title
+          : title // ignore: cast_nullable_to_non_nullable
+              as String,
+      owlSameAs: null == owlSameAs
+          ? _value.owlSameAs
+          : owlSameAs // ignore: cast_nullable_to_non_nullable
+              as String,
       color: null == color
           ? _value.color
           : color // ignore: cast_nullable_to_non_nullable
-              as Color,
+              as String,
+      lineCode: null == lineCode
+          ? _value.lineCode
+          : lineCode // ignore: cast_nullable_to_non_nullable
+              as String,
+      operatorId: null == operatorId
+          ? _value.operatorId
+          : operatorId // ignore: cast_nullable_to_non_nullable
+              as String,
+      lineTitle: null == lineTitle
+          ? _value.lineTitle
+          : lineTitle // ignore: cast_nullable_to_non_nullable
+              as Map<String, String>,
+      stationOrder: null == stationOrder
+          ? _value.stationOrder
+          : stationOrder // ignore: cast_nullable_to_non_nullable
+              as List<String>,
+      ascendingDirection: null == ascendingDirection
+          ? _value.ascendingDirection
+          : ascendingDirection // ignore: cast_nullable_to_non_nullable
+              as String,
+      descendingDirection: null == descendingDirection
+          ? _value.descendingDirection
+          : descendingDirection // ignore: cast_nullable_to_non_nullable
+              as String,
     ) as $Val);
   }
 }
@@ -85,7 +138,18 @@ abstract class _$$TrainLineImplCopyWith<$Res>
       __$$TrainLineImplCopyWithImpl<$Res>;
   @override
   @useResult
-  $Res call({int id, String name, TrainLineLabel label, Color color});
+  $Res call(
+      {String id,
+      String type,
+      String title,
+      String owlSameAs,
+      String color,
+      String lineCode,
+      String operatorId,
+      Map<String, String> lineTitle,
+      List<String> stationOrder,
+      String ascendingDirection,
+      String descendingDirection});
 }
 
 /// @nodoc
@@ -102,27 +166,62 @@ class __$$TrainLineImplCopyWithImpl<$Res>
   @override
   $Res call({
     Object? id = null,
-    Object? name = null,
-    Object? label = null,
+    Object? type = null,
+    Object? title = null,
+    Object? owlSameAs = null,
     Object? color = null,
+    Object? lineCode = null,
+    Object? operatorId = null,
+    Object? lineTitle = null,
+    Object? stationOrder = null,
+    Object? ascendingDirection = null,
+    Object? descendingDirection = null,
   }) {
     return _then(_$TrainLineImpl(
       id: null == id
           ? _value.id
           : id // ignore: cast_nullable_to_non_nullable
-              as int,
-      name: null == name
-          ? _value.name
-          : name // ignore: cast_nullable_to_non_nullable
               as String,
-      label: null == label
-          ? _value.label
-          : label // ignore: cast_nullable_to_non_nullable
-              as TrainLineLabel,
+      type: null == type
+          ? _value.type
+          : type // ignore: cast_nullable_to_non_nullable
+              as String,
+      title: null == title
+          ? _value.title
+          : title // ignore: cast_nullable_to_non_nullable
+              as String,
+      owlSameAs: null == owlSameAs
+          ? _value.owlSameAs
+          : owlSameAs // ignore: cast_nullable_to_non_nullable
+              as String,
       color: null == color
           ? _value.color
           : color // ignore: cast_nullable_to_non_nullable
-              as Color,
+              as String,
+      lineCode: null == lineCode
+          ? _value.lineCode
+          : lineCode // ignore: cast_nullable_to_non_nullable
+              as String,
+      operatorId: null == operatorId
+          ? _value.operatorId
+          : operatorId // ignore: cast_nullable_to_non_nullable
+              as String,
+      lineTitle: null == lineTitle
+          ? _value._lineTitle
+          : lineTitle // ignore: cast_nullable_to_non_nullable
+              as Map<String, String>,
+      stationOrder: null == stationOrder
+          ? _value._stationOrder
+          : stationOrder // ignore: cast_nullable_to_non_nullable
+              as List<String>,
+      ascendingDirection: null == ascendingDirection
+          ? _value.ascendingDirection
+          : ascendingDirection // ignore: cast_nullable_to_non_nullable
+              as String,
+      descendingDirection: null == descendingDirection
+          ? _value.descendingDirection
+          : descendingDirection // ignore: cast_nullable_to_non_nullable
+              as String,
     ));
   }
 }
@@ -132,22 +231,58 @@ class __$$TrainLineImplCopyWithImpl<$Res>
 class _$TrainLineImpl implements _TrainLine {
   const _$TrainLineImpl(
       {required this.id,
-      required this.name,
-      required this.label,
-      required this.color});
+      required this.type,
+      required this.title,
+      required this.owlSameAs,
+      required this.color,
+      required this.lineCode,
+      required this.operatorId,
+      required final Map<String, String> lineTitle,
+      required final List<String> stationOrder,
+      required this.ascendingDirection,
+      required this.descendingDirection})
+      : _lineTitle = lineTitle,
+        _stationOrder = stationOrder;
 
   @override
-  final int id;
+  final String id;
   @override
-  final String name;
+  final String type;
   @override
-  final TrainLineLabel label;
+  final String title;
   @override
-  final Color color;
+  final String owlSameAs;
+  @override
+  final String color;
+  @override
+  final String lineCode;
+  @override
+  final String operatorId;
+  final Map<String, String> _lineTitle;
+  @override
+  Map<String, String> get lineTitle {
+    if (_lineTitle is EqualUnmodifiableMapView) return _lineTitle;
+    // ignore: implicit_dynamic_type
+    return EqualUnmodifiableMapView(_lineTitle);
+  }
+
+  final List<String> _stationOrder;
+  @override
+  List<String> get stationOrder {
+    if (_stationOrder is EqualUnmodifiableListView) return _stationOrder;
+    // ignore: implicit_dynamic_type
+    return EqualUnmodifiableListView(_stationOrder);
+  }
+
+// 駅名のリスト
+  @override
+  final String ascendingDirection;
+  @override
+  final String descendingDirection;
 
   @override
   String toString() {
-    return 'TrainLine(id: $id, name: $name, label: $label, color: $color)';
+    return 'TrainLine(id: $id, type: $type, title: $title, owlSameAs: $owlSameAs, color: $color, lineCode: $lineCode, operatorId: $operatorId, lineTitle: $lineTitle, stationOrder: $stationOrder, ascendingDirection: $ascendingDirection, descendingDirection: $descendingDirection)';
   }
 
   @override
@@ -156,13 +291,39 @@ class _$TrainLineImpl implements _TrainLine {
         (other.runtimeType == runtimeType &&
             other is _$TrainLineImpl &&
             (identical(other.id, id) || other.id == id) &&
-            (identical(other.name, name) || other.name == name) &&
-            (identical(other.label, label) || other.label == label) &&
-            (identical(other.color, color) || other.color == color));
+            (identical(other.type, type) || other.type == type) &&
+            (identical(other.title, title) || other.title == title) &&
+            (identical(other.owlSameAs, owlSameAs) ||
+                other.owlSameAs == owlSameAs) &&
+            (identical(other.color, color) || other.color == color) &&
+            (identical(other.lineCode, lineCode) ||
+                other.lineCode == lineCode) &&
+            (identical(other.operatorId, operatorId) ||
+                other.operatorId == operatorId) &&
+            const DeepCollectionEquality()
+                .equals(other._lineTitle, _lineTitle) &&
+            const DeepCollectionEquality()
+                .equals(other._stationOrder, _stationOrder) &&
+            (identical(other.ascendingDirection, ascendingDirection) ||
+                other.ascendingDirection == ascendingDirection) &&
+            (identical(other.descendingDirection, descendingDirection) ||
+                other.descendingDirection == descendingDirection));
   }
 
   @override
-  int get hashCode => Object.hash(runtimeType, id, name, label, color);
+  int get hashCode => Object.hash(
+      runtimeType,
+      id,
+      type,
+      title,
+      owlSameAs,
+      color,
+      lineCode,
+      operatorId,
+      const DeepCollectionEquality().hash(_lineTitle),
+      const DeepCollectionEquality().hash(_stationOrder),
+      ascendingDirection,
+      descendingDirection);
 
   /// Create a copy of TrainLine
   /// with the given fields replaced by the non-null parameter values.
@@ -175,19 +336,40 @@ class _$TrainLineImpl implements _TrainLine {
 
 abstract class _TrainLine implements TrainLine {
   const factory _TrainLine(
-      {required final int id,
-      required final String name,
-      required final TrainLineLabel label,
-      required final Color color}) = _$TrainLineImpl;
+      {required final String id,
+      required final String type,
+      required final String title,
+      required final String owlSameAs,
+      required final String color,
+      required final String lineCode,
+      required final String operatorId,
+      required final Map<String, String> lineTitle,
+      required final List<String> stationOrder,
+      required final String ascendingDirection,
+      required final String descendingDirection}) = _$TrainLineImpl;
 
   @override
-  int get id;
+  String get id;
   @override
-  String get name;
+  String get type;
   @override
-  TrainLineLabel get label;
+  String get title;
   @override
-  Color get color;
+  String get owlSameAs;
+  @override
+  String get color;
+  @override
+  String get lineCode;
+  @override
+  String get operatorId;
+  @override
+  Map<String, String> get lineTitle;
+  @override
+  List<String> get stationOrder; // 駅名のリスト
+  @override
+  String get ascendingDirection;
+  @override
+  String get descendingDirection;
 
   /// Create a copy of TrainLine
   /// with the given fields replaced by the non-null parameter values.
@@ -199,12 +381,20 @@ abstract class _TrainLine implements TrainLine {
 
 /// @nodoc
 mixin _$Station {
-  int get id => throw _privateConstructorUsedError;
-  int get lineId => throw _privateConstructorUsedError;
-  String get name => throw _privateConstructorUsedError;
-  String get stationNumber => throw _privateConstructorUsedError;
-  List<TrainLine>? get connectedLines => throw _privateConstructorUsedError;
-  String? get iconUrl => throw _privateConstructorUsedError;
+  String get id => throw _privateConstructorUsedError;
+  String get type => throw _privateConstructorUsedError;
+  double get latitude => throw _privateConstructorUsedError;
+  double get longitude => throw _privateConstructorUsedError;
+  String get title => throw _privateConstructorUsedError;
+  String get owlSameAs => throw _privateConstructorUsedError;
+  String get line => throw _privateConstructorUsedError;
+  String get operatorId => throw _privateConstructorUsedError;
+  String get stationCode => throw _privateConstructorUsedError;
+  Map<String, String> get stationTitle => throw _privateConstructorUsedError;
+  List<String>? get passengerSurvey => throw _privateConstructorUsedError;
+  List<String>? get stationTimetable => throw _privateConstructorUsedError;
+  List<TrainLine>? get connectingLines => throw _privateConstructorUsedError;
+  List<Station>? get connectingStations => throw _privateConstructorUsedError;
 
   /// Create a copy of Station
   /// with the given fields replaced by the non-null parameter values.
@@ -218,12 +408,20 @@ abstract class $StationCopyWith<$Res> {
       _$StationCopyWithImpl<$Res, Station>;
   @useResult
   $Res call(
-      {int id,
-      int lineId,
-      String name,
-      String stationNumber,
-      List<TrainLine>? connectedLines,
-      String? iconUrl});
+      {String id,
+      String type,
+      double latitude,
+      double longitude,
+      String title,
+      String owlSameAs,
+      String line,
+      String operatorId,
+      String stationCode,
+      Map<String, String> stationTitle,
+      List<String>? passengerSurvey,
+      List<String>? stationTimetable,
+      List<TrainLine>? connectingLines,
+      List<Station>? connectingStations});
 }
 
 /// @nodoc
@@ -242,37 +440,77 @@ class _$StationCopyWithImpl<$Res, $Val extends Station>
   @override
   $Res call({
     Object? id = null,
-    Object? lineId = null,
-    Object? name = null,
-    Object? stationNumber = null,
-    Object? connectedLines = freezed,
-    Object? iconUrl = freezed,
+    Object? type = null,
+    Object? latitude = null,
+    Object? longitude = null,
+    Object? title = null,
+    Object? owlSameAs = null,
+    Object? line = null,
+    Object? operatorId = null,
+    Object? stationCode = null,
+    Object? stationTitle = null,
+    Object? passengerSurvey = freezed,
+    Object? stationTimetable = freezed,
+    Object? connectingLines = freezed,
+    Object? connectingStations = freezed,
   }) {
     return _then(_value.copyWith(
       id: null == id
           ? _value.id
           : id // ignore: cast_nullable_to_non_nullable
-              as int,
-      lineId: null == lineId
-          ? _value.lineId
-          : lineId // ignore: cast_nullable_to_non_nullable
-              as int,
-      name: null == name
-          ? _value.name
-          : name // ignore: cast_nullable_to_non_nullable
               as String,
-      stationNumber: null == stationNumber
-          ? _value.stationNumber
-          : stationNumber // ignore: cast_nullable_to_non_nullable
+      type: null == type
+          ? _value.type
+          : type // ignore: cast_nullable_to_non_nullable
               as String,
-      connectedLines: freezed == connectedLines
-          ? _value.connectedLines
-          : connectedLines // ignore: cast_nullable_to_non_nullable
+      latitude: null == latitude
+          ? _value.latitude
+          : latitude // ignore: cast_nullable_to_non_nullable
+              as double,
+      longitude: null == longitude
+          ? _value.longitude
+          : longitude // ignore: cast_nullable_to_non_nullable
+              as double,
+      title: null == title
+          ? _value.title
+          : title // ignore: cast_nullable_to_non_nullable
+              as String,
+      owlSameAs: null == owlSameAs
+          ? _value.owlSameAs
+          : owlSameAs // ignore: cast_nullable_to_non_nullable
+              as String,
+      line: null == line
+          ? _value.line
+          : line // ignore: cast_nullable_to_non_nullable
+              as String,
+      operatorId: null == operatorId
+          ? _value.operatorId
+          : operatorId // ignore: cast_nullable_to_non_nullable
+              as String,
+      stationCode: null == stationCode
+          ? _value.stationCode
+          : stationCode // ignore: cast_nullable_to_non_nullable
+              as String,
+      stationTitle: null == stationTitle
+          ? _value.stationTitle
+          : stationTitle // ignore: cast_nullable_to_non_nullable
+              as Map<String, String>,
+      passengerSurvey: freezed == passengerSurvey
+          ? _value.passengerSurvey
+          : passengerSurvey // ignore: cast_nullable_to_non_nullable
+              as List<String>?,
+      stationTimetable: freezed == stationTimetable
+          ? _value.stationTimetable
+          : stationTimetable // ignore: cast_nullable_to_non_nullable
+              as List<String>?,
+      connectingLines: freezed == connectingLines
+          ? _value.connectingLines
+          : connectingLines // ignore: cast_nullable_to_non_nullable
               as List<TrainLine>?,
-      iconUrl: freezed == iconUrl
-          ? _value.iconUrl
-          : iconUrl // ignore: cast_nullable_to_non_nullable
-              as String?,
+      connectingStations: freezed == connectingStations
+          ? _value.connectingStations
+          : connectingStations // ignore: cast_nullable_to_non_nullable
+              as List<Station>?,
     ) as $Val);
   }
 }
@@ -285,12 +523,20 @@ abstract class _$$StationImplCopyWith<$Res> implements $StationCopyWith<$Res> {
   @override
   @useResult
   $Res call(
-      {int id,
-      int lineId,
-      String name,
-      String stationNumber,
-      List<TrainLine>? connectedLines,
-      String? iconUrl});
+      {String id,
+      String type,
+      double latitude,
+      double longitude,
+      String title,
+      String owlSameAs,
+      String line,
+      String operatorId,
+      String stationCode,
+      Map<String, String> stationTitle,
+      List<String>? passengerSurvey,
+      List<String>? stationTimetable,
+      List<TrainLine>? connectingLines,
+      List<Station>? connectingStations});
 }
 
 /// @nodoc
@@ -307,37 +553,77 @@ class __$$StationImplCopyWithImpl<$Res>
   @override
   $Res call({
     Object? id = null,
-    Object? lineId = null,
-    Object? name = null,
-    Object? stationNumber = null,
-    Object? connectedLines = freezed,
-    Object? iconUrl = freezed,
+    Object? type = null,
+    Object? latitude = null,
+    Object? longitude = null,
+    Object? title = null,
+    Object? owlSameAs = null,
+    Object? line = null,
+    Object? operatorId = null,
+    Object? stationCode = null,
+    Object? stationTitle = null,
+    Object? passengerSurvey = freezed,
+    Object? stationTimetable = freezed,
+    Object? connectingLines = freezed,
+    Object? connectingStations = freezed,
   }) {
     return _then(_$StationImpl(
       id: null == id
           ? _value.id
           : id // ignore: cast_nullable_to_non_nullable
-              as int,
-      lineId: null == lineId
-          ? _value.lineId
-          : lineId // ignore: cast_nullable_to_non_nullable
-              as int,
-      name: null == name
-          ? _value.name
-          : name // ignore: cast_nullable_to_non_nullable
               as String,
-      stationNumber: null == stationNumber
-          ? _value.stationNumber
-          : stationNumber // ignore: cast_nullable_to_non_nullable
+      type: null == type
+          ? _value.type
+          : type // ignore: cast_nullable_to_non_nullable
               as String,
-      connectedLines: freezed == connectedLines
-          ? _value._connectedLines
-          : connectedLines // ignore: cast_nullable_to_non_nullable
+      latitude: null == latitude
+          ? _value.latitude
+          : latitude // ignore: cast_nullable_to_non_nullable
+              as double,
+      longitude: null == longitude
+          ? _value.longitude
+          : longitude // ignore: cast_nullable_to_non_nullable
+              as double,
+      title: null == title
+          ? _value.title
+          : title // ignore: cast_nullable_to_non_nullable
+              as String,
+      owlSameAs: null == owlSameAs
+          ? _value.owlSameAs
+          : owlSameAs // ignore: cast_nullable_to_non_nullable
+              as String,
+      line: null == line
+          ? _value.line
+          : line // ignore: cast_nullable_to_non_nullable
+              as String,
+      operatorId: null == operatorId
+          ? _value.operatorId
+          : operatorId // ignore: cast_nullable_to_non_nullable
+              as String,
+      stationCode: null == stationCode
+          ? _value.stationCode
+          : stationCode // ignore: cast_nullable_to_non_nullable
+              as String,
+      stationTitle: null == stationTitle
+          ? _value._stationTitle
+          : stationTitle // ignore: cast_nullable_to_non_nullable
+              as Map<String, String>,
+      passengerSurvey: freezed == passengerSurvey
+          ? _value._passengerSurvey
+          : passengerSurvey // ignore: cast_nullable_to_non_nullable
+              as List<String>?,
+      stationTimetable: freezed == stationTimetable
+          ? _value._stationTimetable
+          : stationTimetable // ignore: cast_nullable_to_non_nullable
+              as List<String>?,
+      connectingLines: freezed == connectingLines
+          ? _value._connectingLines
+          : connectingLines // ignore: cast_nullable_to_non_nullable
               as List<TrainLine>?,
-      iconUrl: freezed == iconUrl
-          ? _value.iconUrl
-          : iconUrl // ignore: cast_nullable_to_non_nullable
-              as String?,
+      connectingStations: freezed == connectingStations
+          ? _value._connectingStations
+          : connectingStations // ignore: cast_nullable_to_non_nullable
+              as List<Station>?,
     ));
   }
 }
@@ -347,37 +633,96 @@ class __$$StationImplCopyWithImpl<$Res>
 class _$StationImpl implements _Station {
   const _$StationImpl(
       {required this.id,
-      required this.lineId,
-      required this.name,
-      required this.stationNumber,
-      required final List<TrainLine>? connectedLines,
-      this.iconUrl})
-      : _connectedLines = connectedLines;
+      required this.type,
+      required this.latitude,
+      required this.longitude,
+      required this.title,
+      required this.owlSameAs,
+      required this.line,
+      required this.operatorId,
+      required this.stationCode,
+      required final Map<String, String> stationTitle,
+      final List<String>? passengerSurvey,
+      final List<String>? stationTimetable,
+      final List<TrainLine>? connectingLines,
+      final List<Station>? connectingStations})
+      : _stationTitle = stationTitle,
+        _passengerSurvey = passengerSurvey,
+        _stationTimetable = stationTimetable,
+        _connectingLines = connectingLines,
+        _connectingStations = connectingStations;
 
   @override
-  final int id;
+  final String id;
   @override
-  final int lineId;
+  final String type;
   @override
-  final String name;
+  final double latitude;
   @override
-  final String stationNumber;
-  final List<TrainLine>? _connectedLines;
+  final double longitude;
   @override
-  List<TrainLine>? get connectedLines {
-    final value = _connectedLines;
+  final String title;
+  @override
+  final String owlSameAs;
+  @override
+  final String line;
+  @override
+  final String operatorId;
+  @override
+  final String stationCode;
+  final Map<String, String> _stationTitle;
+  @override
+  Map<String, String> get stationTitle {
+    if (_stationTitle is EqualUnmodifiableMapView) return _stationTitle;
+    // ignore: implicit_dynamic_type
+    return EqualUnmodifiableMapView(_stationTitle);
+  }
+
+  final List<String>? _passengerSurvey;
+  @override
+  List<String>? get passengerSurvey {
+    final value = _passengerSurvey;
     if (value == null) return null;
-    if (_connectedLines is EqualUnmodifiableListView) return _connectedLines;
+    if (_passengerSurvey is EqualUnmodifiableListView) return _passengerSurvey;
+    // ignore: implicit_dynamic_type
+    return EqualUnmodifiableListView(value);
+  }
+
+  final List<String>? _stationTimetable;
+  @override
+  List<String>? get stationTimetable {
+    final value = _stationTimetable;
+    if (value == null) return null;
+    if (_stationTimetable is EqualUnmodifiableListView)
+      return _stationTimetable;
+    // ignore: implicit_dynamic_type
+    return EqualUnmodifiableListView(value);
+  }
+
+  final List<TrainLine>? _connectingLines;
+  @override
+  List<TrainLine>? get connectingLines {
+    final value = _connectingLines;
+    if (value == null) return null;
+    if (_connectingLines is EqualUnmodifiableListView) return _connectingLines;
+    // ignore: implicit_dynamic_type
+    return EqualUnmodifiableListView(value);
+  }
+
+  final List<Station>? _connectingStations;
+  @override
+  List<Station>? get connectingStations {
+    final value = _connectingStations;
+    if (value == null) return null;
+    if (_connectingStations is EqualUnmodifiableListView)
+      return _connectingStations;
     // ignore: implicit_dynamic_type
     return EqualUnmodifiableListView(value);
   }
 
   @override
-  final String? iconUrl;
-
-  @override
   String toString() {
-    return 'Station(id: $id, lineId: $lineId, name: $name, stationNumber: $stationNumber, connectedLines: $connectedLines, iconUrl: $iconUrl)';
+    return 'Station(id: $id, type: $type, latitude: $latitude, longitude: $longitude, title: $title, owlSameAs: $owlSameAs, line: $line, operatorId: $operatorId, stationCode: $stationCode, stationTitle: $stationTitle, passengerSurvey: $passengerSurvey, stationTimetable: $stationTimetable, connectingLines: $connectingLines, connectingStations: $connectingStations)';
   }
 
   @override
@@ -386,18 +731,48 @@ class _$StationImpl implements _Station {
         (other.runtimeType == runtimeType &&
             other is _$StationImpl &&
             (identical(other.id, id) || other.id == id) &&
-            (identical(other.lineId, lineId) || other.lineId == lineId) &&
-            (identical(other.name, name) || other.name == name) &&
-            (identical(other.stationNumber, stationNumber) ||
-                other.stationNumber == stationNumber) &&
+            (identical(other.type, type) || other.type == type) &&
+            (identical(other.latitude, latitude) ||
+                other.latitude == latitude) &&
+            (identical(other.longitude, longitude) ||
+                other.longitude == longitude) &&
+            (identical(other.title, title) || other.title == title) &&
+            (identical(other.owlSameAs, owlSameAs) ||
+                other.owlSameAs == owlSameAs) &&
+            (identical(other.line, line) || other.line == line) &&
+            (identical(other.operatorId, operatorId) ||
+                other.operatorId == operatorId) &&
+            (identical(other.stationCode, stationCode) ||
+                other.stationCode == stationCode) &&
             const DeepCollectionEquality()
-                .equals(other._connectedLines, _connectedLines) &&
-            (identical(other.iconUrl, iconUrl) || other.iconUrl == iconUrl));
+                .equals(other._stationTitle, _stationTitle) &&
+            const DeepCollectionEquality()
+                .equals(other._passengerSurvey, _passengerSurvey) &&
+            const DeepCollectionEquality()
+                .equals(other._stationTimetable, _stationTimetable) &&
+            const DeepCollectionEquality()
+                .equals(other._connectingLines, _connectingLines) &&
+            const DeepCollectionEquality()
+                .equals(other._connectingStations, _connectingStations));
   }
 
   @override
-  int get hashCode => Object.hash(runtimeType, id, lineId, name, stationNumber,
-      const DeepCollectionEquality().hash(_connectedLines), iconUrl);
+  int get hashCode => Object.hash(
+      runtimeType,
+      id,
+      type,
+      latitude,
+      longitude,
+      title,
+      owlSameAs,
+      line,
+      operatorId,
+      stationCode,
+      const DeepCollectionEquality().hash(_stationTitle),
+      const DeepCollectionEquality().hash(_passengerSurvey),
+      const DeepCollectionEquality().hash(_stationTimetable),
+      const DeepCollectionEquality().hash(_connectingLines),
+      const DeepCollectionEquality().hash(_connectingStations));
 
   /// Create a copy of Station
   /// with the given fields replaced by the non-null parameter values.
@@ -410,25 +785,49 @@ class _$StationImpl implements _Station {
 
 abstract class _Station implements Station {
   const factory _Station(
-      {required final int id,
-      required final int lineId,
-      required final String name,
-      required final String stationNumber,
-      required final List<TrainLine>? connectedLines,
-      final String? iconUrl}) = _$StationImpl;
+      {required final String id,
+      required final String type,
+      required final double latitude,
+      required final double longitude,
+      required final String title,
+      required final String owlSameAs,
+      required final String line,
+      required final String operatorId,
+      required final String stationCode,
+      required final Map<String, String> stationTitle,
+      final List<String>? passengerSurvey,
+      final List<String>? stationTimetable,
+      final List<TrainLine>? connectingLines,
+      final List<Station>? connectingStations}) = _$StationImpl;
 
   @override
-  int get id;
+  String get id;
   @override
-  int get lineId;
+  String get type;
   @override
-  String get name;
+  double get latitude;
   @override
-  String get stationNumber;
+  double get longitude;
   @override
-  List<TrainLine>? get connectedLines;
+  String get title;
   @override
-  String? get iconUrl;
+  String get owlSameAs;
+  @override
+  String get line;
+  @override
+  String get operatorId;
+  @override
+  String get stationCode;
+  @override
+  Map<String, String> get stationTitle;
+  @override
+  List<String>? get passengerSurvey;
+  @override
+  List<String>? get stationTimetable;
+  @override
+  List<TrainLine>? get connectingLines;
+  @override
+  List<Station>? get connectingStations;
 
   /// Create a copy of Station
   /// with the given fields replaced by the non-null parameter values.

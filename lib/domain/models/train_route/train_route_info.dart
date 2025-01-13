@@ -1,28 +1,41 @@
 import 'package:freezed_annotation/freezed_annotation.dart';
-import 'package:train_logo_detection_app/config/train_logo.dart';
-import 'package:flutter/material.dart';
 
 part 'train_route_info.freezed.dart';
 
 @freezed
 class TrainLine with _$TrainLine {
   const factory TrainLine({
-    required int id,
-    required String name,
-    required TrainLineLabel label,
-    required Color color,
+    required String id,
+    required String type,
+    required String title,
+    required String owlSameAs,
+    required String color,
+    required String lineCode,
+    required String operatorId,
+    required Map<String, String> lineTitle,
+    required List<String> stationOrder, // 駅名のリスト
+    required String ascendingDirection,
+    required String descendingDirection,
   }) = _TrainLine;
 }
 
 @freezed
 class Station with _$Station {
   const factory Station({
-    required int id,
-    required int lineId,
-    required String name,
-    required String stationNumber,
-    required List<TrainLine>? connectedLines,
-    String? iconUrl,
+    required String id,
+    required String type,
+    required double latitude,
+    required double longitude,
+    required String title,
+    required String owlSameAs,
+    required String line,
+    required String operatorId,
+    required String stationCode,
+    required Map<String, String> stationTitle,
+    List<String>? passengerSurvey,
+    List<String>? stationTimetable,
+    List<TrainLine>? connectingLines, 
+    List<Station>? connectingStations,
   }) = _Station;
 }
 
