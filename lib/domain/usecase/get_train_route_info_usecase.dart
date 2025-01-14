@@ -7,6 +7,9 @@ class GetTrainRouteInfoUseCase {
   final TrainRouteRepository _trainRouteRepository;
   final LocationRepository _locationRepository;
 
+  // 最寄駅と判定する最大距離（メートル）
+  static const double _maxDistanceMeters = 1000.0;
+
   GetTrainRouteInfoUseCase(
       this._trainRouteRepository, this._locationRepository);
 
@@ -27,7 +30,9 @@ class GetTrainRouteInfoUseCase {
           station.latitude,
           station.longitude,
         );
-        if (distance != null && distance < minDistance) {
+        if (distance != null &&
+            distance < minDistance &&
+            distance <= _maxDistanceMeters) {
           minDistance = distance;
           nearestStation = station;
         }

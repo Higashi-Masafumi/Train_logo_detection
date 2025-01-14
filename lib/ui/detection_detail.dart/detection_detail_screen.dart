@@ -25,6 +25,8 @@ class _DetectionDetailScreenState extends ConsumerState<DetectionDetailScreen> {
     final trainColor =
         Color(int.parse(trainRouteInfo.line.color.replaceAll('#', '0xFF')));
 
+    final currentStationCode = trainRouteInfo.currentStation?.stationCode;
+
     return Scaffold(
       appBar: AppBar(
         title: const Text('路線情報'),
@@ -80,17 +82,35 @@ class _DetectionDetailScreenState extends ConsumerState<DetectionDetailScreen> {
               itemCount: trainRouteInfo.stations.length,
               itemBuilder: (context, index) {
                 final station = trainRouteInfo.stations[index];
+                final isCurrentStation =
+                    (station.stationCode == currentStationCode);
+
                 return ListTile(
-                  tileColor: trainRouteInfo.currentStation?.stationCode ==
-                          station.stationCode
-                      ? trainColor
-                      : null,
+                  // 最寄駅なら背景色を変更
+                  tileColor:
+                      isCurrentStation ? Colors.yellow.withOpacity(0.3) : null,
                   leading: TrainLineLogo(
-                    circleColor: trainColor,
+                    // 最寄駅ならアイコンを少し強調しても良い
+                    circleColor: isCurrentStation ? Colors.red : trainColor,
                     text: station.stationCode,
                     size: 40,
                   ),
-                  title: Text(station.stationTitle['ja'] ?? ''),
+                  title: Row(
+                    children: [
+                      Expanded(
+                        child: Text(station.stationTitle['ja'] ?? ''),
+                      ),
+                      // 最寄駅なら駅名の後ろにアイコンをつける
+                      if (isCurrentStation) ...[
+                        const SizedBox(width: 8),
+                        const Icon(
+                          Icons.location_on,
+                          color: Colors.red,
+                          size: 20,
+                        ),
+                      ],
+                    ],
+                  ),
                   subtitle: Text(station.stationTitle['en'] ?? ''),
                   trailing: station.connectingLines != null &&
                           station.connectingLines!.isNotEmpty
@@ -98,7 +118,8 @@ class _DetectionDetailScreenState extends ConsumerState<DetectionDetailScreen> {
                           mainAxisSize: MainAxisSize.min,
                           children: station.connectingLines!.map((line) {
                             final lineColor = Color(
-                                int.parse(line.color.replaceAll('#', '0xFF')));
+                              int.parse(line.color.replaceAll('#', '0xFF')),
+                            );
                             return Padding(
                               padding: const EdgeInsets.only(right: 8.0),
                               child: TrainLineLogo(
