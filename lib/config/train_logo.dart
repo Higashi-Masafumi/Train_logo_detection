@@ -1,3 +1,5 @@
+import 'package:flutter/material.dart';
+
 enum TrainLineLabel {
   asakusa('asakusa'),
   chiyoda('chiyoda'),
@@ -119,12 +121,27 @@ class TrainLineLabelMapper {
     TrainLineLabel.yurakuchyo: 6,
   };
 
-  // color code
-  
+  static const Map<TrainLineLabel, Color> _lineColor = {
+    TrainLineLabel.asakusa: Color(0xFFFF535F), // 浅草線 #FF535F
+    TrainLineLabel.chiyoda: Color(0xFF00BB85), // 千代田線 #00BB85
+    TrainLineLabel.fukutoshin: Color(0xFF9C5E31), // 副都心線 #9C5E31
+    TrainLineLabel.ginza: Color(0xFFFF9500), // 銀座線 #FF9500
+    TrainLineLabel.hanzoumon: Color(0xFF8F76D6), // 半蔵門線 #8F76D6
+    TrainLineLabel.hibiya: Color(0xFFB5B5AC), // 日比谷線 #B5B5AC
+    TrainLineLabel.marunouchi: Color(0xFFF62E36), // 丸ノ内線 #F62E36
+    TrainLineLabel.mita: Color(0xFF0067B0), // 三田線 #0067B0
+    TrainLineLabel.nannboku: Color(0xFF00AC9B), // 南北線 #00AC9B
+    TrainLineLabel.ooedo: Color(0xFFCF3366), // 大江戸線 #CF3366
+    TrainLineLabel.shinjyuku: Color(0xFF9FB01C), // 新宿線 #9FB01C
+    TrainLineLabel.touzai: Color(0xFF009BBF), // 東西線 #009BBF
+    TrainLineLabel.yurakuchyo: Color(0xFFC1A470), // 有楽町線 #C1A470
+  };
 
   static int getLineId(TrainLineLabel line) => _lineId[line]!;
   static TrainLineLabel fromLineId(int id) =>
       _lineId.entries.firstWhere((element) => element.value == id).key;
+
+  static Color getLineColor(TrainLineLabel line) => _lineColor[line]!;
 
   // 双方向マッピング用のリバースマップを生成
   static final Map<String, TrainLineLabel> _reverseLogoText =
