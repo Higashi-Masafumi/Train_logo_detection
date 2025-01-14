@@ -60,5 +60,12 @@
 		</array>
 		<key>UIStatusBarHidden</key>
 		<false/>
+		<key>LSApplicationQueriesSchemes</key>
+		<array>
+			<string>geo</string>
+			<string>http</string>
+			<string>https</string>
+			<string>google-maps</string>
+		</array>
 	</dict>
 </plist>

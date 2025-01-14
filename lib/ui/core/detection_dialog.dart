@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:train_logo_detection_app/domain/models/logo_detection/train_logo_detection.dart';
 import 'package:train_logo_detection_app/config/train_logo.dart';
+import 'package:train_logo_detection_app/ui/core/train_logo.dart';
 
 class DetectionResultDialog extends StatelessWidget {
   final TrainLogoDetectionResult result;
@@ -13,6 +14,7 @@ class DetectionResultDialog extends StatelessWidget {
     required this.onViewRouteInfo,
     required this.onDismiss,
   });
+
   @override
   Widget build(BuildContext context) {
     return Dialog(
@@ -29,17 +31,38 @@ class DetectionResultDialog extends StatelessWidget {
               style: TextStyle(fontSize: 20, fontWeight: FontWeight.bold),
             ),
             const SizedBox(height: 16),
-            if (result.croppedimage != null)
-              Image.memory(
-                result.croppedimage!,
-                height: 100,
-                fit: BoxFit.cover,
+            if (result.croppedimage != null) ...[
+              Row(
+                mainAxisAlignment: MainAxisAlignment.center,
+                children: [
+                  // 検出画像
+                  ClipRRect(
+                    borderRadius: BorderRadius.circular(8),
+                    child: Image.memory(
+                      result.croppedimage!,
+                      height: 100,
+                      fit: BoxFit.cover,
+                    ),
+                  ),
+                  const SizedBox(width: 16),
+                  // 路線記号アイコン
+                  if (result.detectedLine != null)
+                    TrainLineLogo(
+                      circleColor: TrainLineLabelMapper.getLineColor(
+                          result.detectedLine!),
+                      text: TrainLineLabelMapper.getLogoText(
+                          result.detectedLine!),
+                      size: 60,
+                    ),
+                ],
               ),
+            ],
             const SizedBox(height: 16),
             if (result.detectedLine != null)
               Text(
                 '対応路線: ${TrainLineLabelMapper.getLineNameJapanese(result.detectedLine!)}',
-                style: const TextStyle(fontSize: 16, fontWeight: FontWeight.bold),
+                style:
+                    const TextStyle(fontSize: 16, fontWeight: FontWeight.bold),
               ),
             const SizedBox(height: 16),
             Row(
