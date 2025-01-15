@@ -10,7 +10,6 @@ import 'package:train_logo_detection_app/data/repositories/google_ocr_image.dart
 import 'package:train_logo_detection_app/domain/models/logo_detection/train_logo_detection.dart';
 import 'package:train_logo_detection_app/domain/usecase/verify_detected_object.dart';
 
-
 final realtimeDetectionViewmodelProvider =
     ChangeNotifierProvider((ref) => RealtimeDetectionViewmodel());
 
