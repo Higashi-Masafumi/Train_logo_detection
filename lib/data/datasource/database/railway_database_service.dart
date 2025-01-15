@@ -131,9 +131,7 @@ class RailwayDatabaseService {
 
     if (maps.isNotEmpty) {
       final dbMap = Map<String, dynamic>.from(maps.first);
-      debugPrint('Raw data: $dbMap');
       final modelMap = _convertLineKeys(dbMap);
-      debugPrint('Converted data: $modelMap');
       return OdptLine.fromJson(modelMap);
     }
     return null;
@@ -141,7 +139,6 @@ class RailwayDatabaseService {
 
   Future<List<OdptStation>> getStationsByLine(String lineId) async {
     final db = await database;
-    debugPrint('Fetching stations for line: $lineId');
 
     final maps = await db.query(
       'stations',
@@ -150,18 +147,13 @@ class RailwayDatabaseService {
       orderBy: 'station_code',
     );
 
-    debugPrint('Found ${maps.length} stations');
-
     return Future.wait(maps.map((map) async {
       final dbMap = Map<String, dynamic>.from(map);
-      debugPrint('Raw station data: $dbMap');
 
       final modelMap = _convertStationKeys(dbMap);
-      debugPrint('Converted station data: $modelMap');
 
       try {
         final station = OdptStation.fromJson(modelMap);
-        debugPrint('Successfully converted station: ${station.title}');
         return station;
       } catch (e) {
         debugPrint('Error converting station: $e');

@@ -2,7 +2,7 @@ import 'dart:math';
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:train_logo_detection_app/ui/realtime_detection/realtime_detection_screen.dart';
-import 'package:train_logo_detection_app/ui/detection_detail.dart/detection_detail_screen.dart';
+import 'package:train_logo_detection_app/ui/detection_detail/detection_detail_screen.dart';
 import 'package:train_logo_detection_app/data/services/yolo_model.dart';
 import 'package:train_logo_detection_app/data/services/yolo_camera.dart';
 import 'package:train_logo_detection_app/data/services/google_ml_text_recognition.dart';

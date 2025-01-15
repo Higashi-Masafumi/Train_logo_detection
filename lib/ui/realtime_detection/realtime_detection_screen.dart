@@ -4,6 +4,7 @@ import 'package:ultralytics_yolo/ultralytics_yolo.dart';
 import './realtime_detection_viewmodel.dart';
 import 'package:train_logo_detection_app/ui/core/detection_dialog.dart';
 import 'dart:ui' as ui;
+import 'package:train_logo_detection_app/ui/detection_detail/detection_detail_viewmodel.dart';
 
 class RealtimeDetectionScreen extends ConsumerStatefulWidget {
   const RealtimeDetectionScreen({super.key});
@@ -21,6 +22,7 @@ class _RealtimeDetectionScreenState
     // ViewModelの初期化
     WidgetsBinding.instance.addPostFrameCallback((_) {
       ref.read(realtimeDetectionViewmodelProvider).initialize();
+      ref.watch(trainRouteViewModelProvider); // 事前にデータモデルクラスを読み込む
     });
   }
 
