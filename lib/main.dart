@@ -1,12 +1,15 @@
+import 'dart:math';
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:train_logo_detection_app/ui/realtime_detection/realtime_detection_screen.dart';
 import 'package:train_logo_detection_app/ui/detection_detail.dart/detection_detail_screen.dart';
-import 'package:train_logo_detection_app/utils/check_permission.dart';
 import 'package:train_logo_detection_app/data/services/yolo_model.dart';
 import 'package:train_logo_detection_app/data/services/yolo_camera.dart';
 import 'package:train_logo_detection_app/data/services/google_ml_text_recognition.dart';
 import 'package:permission_handler/permission_handler.dart';
+import 'package:train_logo_detection_app/config/train_logo.dart';
+import 'package:train_logo_detection_app/ui/core/train_logo.dart';
+
 void main() async {
   WidgetsFlutterBinding.ensureInitialized(); // Flutter Engineの初期化
   await UltralyticsYoloModelService().initialize(); // YOLOモデルの初期化
@@ -47,95 +50,263 @@ class InitializationScreen extends StatefulWidget {
   State<InitializationScreen> createState() => _InitializationScreenState();
 }
 
-class _InitializationScreenState extends State<InitializationScreen> {
+class _InitializationScreenState extends State<InitializationScreen>
+    with SingleTickerProviderStateMixin {
+  late final AnimationController _controller;
   bool _isInitializing = true;
-  String? _errorMessage;
+  Map<Permission, bool> _permissionStatus = {
+    Permission.camera: false,
+    Permission.location: false,
+  };
 
   @override
   void initState() {
     super.initState();
-    _initialize();
+    _controller = AnimationController(
+      duration: const Duration(seconds: 20),
+      vsync: this,
+    )..repeat();
+    _checkPermissions();
   }
 
-  Future<void> _initialize() async {
+  @override
+  void dispose() {
+    _controller.dispose();
+    super.dispose();
+  }
+
+  Future<void> _checkPermissions() async {
+    setState(() => _isInitializing = true);
+
     try {
-      // パーミッションのチェック
-      final hasPermissions = await checkPermissions();
-      if (!hasPermissions) {
-        if (mounted) {
-          setState(() {
-            _isInitializing = false;
-            _errorMessage = '必要な権限が許可されていません';
-          });
-          ScaffoldMessenger.of(context).showSnackBar(
-            const SnackBar(content: Text('必要な権限が許可されていません')),
-          );
-        }
-        return;
-      }
+      // 各権限の状態を確認
+      final cameraStatus = await Permission.camera.status;
+      final locationStatus = await Permission.location.status;
 
       if (mounted) {
-        // 初期化が完了したら検出画面に遷移
-        Navigator.pushReplacementNamed(context, '/realtime_detection');
+        setState(() {
+          _permissionStatus = {
+            Permission.camera: cameraStatus.isGranted,
+            Permission.location: locationStatus.isGranted,
+          };
+          _isInitializing = false;
+        });
       }
     } catch (e) {
       if (mounted) {
         setState(() {
           _isInitializing = false;
-          _errorMessage = '初期化エラー: $e';
         });
         ScaffoldMessenger.of(context).showSnackBar(
-          SnackBar(content: Text('初期化エラー: $e')),
+          SnackBar(content: Text('権限の確認中にエラーが発生しました: $e')),
         );
       }
     }
   }
 
-  void _navigateToDetectionScreen() {
-    Navigator.pushReplacementNamed(context, '/realtime_detection');
+  Future<void> _navigateToDetectionScreen() async {
+    // 必要な権限が不足している場合
+    final missingPermissions = _permissionStatus.entries
+        .where((e) => !e.value)
+        .map((e) => e.key)
+        .toList();
+
+    if (missingPermissions.isNotEmpty) {
+      // 権限が不足している場合はダイアログを表示
+      if (mounted) {
+        showDialog(
+          context: context,
+          builder: (context) => AlertDialog(
+            title: const Text('必要な権限が不足しています'),
+            content: Column(
+              mainAxisSize: MainAxisSize.min,
+              crossAxisAlignment: CrossAxisAlignment.start,
+              children: [
+                const Text('以下の権限が必要です：'),
+                const SizedBox(height: 8),
+                ...missingPermissions.map((permission) {
+                  String permissionName = switch (permission) {
+                    Permission.camera => 'カメラ',
+                    Permission.location => '位置情報',
+                    _ => 'その他',
+                  };
+                  return Text('・$permissionName');
+                }),
+              ],
+            ),
+            actions: [
+              TextButton(
+                onPressed: () => Navigator.pop(context),
+                child: const Text('キャンセル'),
+              ),
+              ElevatedButton(
+                onPressed: () {
+                  Navigator.pop(context);
+                  _navigateToSettings();
+                },
+                child: const Text('設定画面へ'),
+              ),
+            ],
+          ),
+        );
+      }
+      return;
+    }
+
+    // 全ての権限が許可されている場合は検出画面へ
+    if (mounted) {
+      Navigator.pushReplacementNamed(context, '/realtime_detection');
+    }
   }
 
   Future<void> _navigateToSettings() async {
-    // permission_handlerで端末設定画面へ
     await openAppSettings();
+    // 設定画面から戻ってきたら権限を再チェック
+    if (mounted) {
+      _checkPermissions();
+    }
+  }
+
+  // ロゴを円形に配置するウィジェット
+  Widget _buildCircularLogos() {
+    const double radius = 140;
+    final int count = TrainLineLabel.values.length;
+
+    return Center(
+      child: SizedBox(
+        height: radius * 2,
+        width: radius * 2,
+        child: Stack(
+          alignment: Alignment.center,
+          children: [
+            const Text(
+              '検出可能な\n路線ロゴ',
+              textAlign: TextAlign.center,
+              style: TextStyle(
+                fontSize: 16,
+                color: Colors.grey,
+                height: 1.5,
+              ),
+            ),
+            ...List.generate(count, (index) {
+              final double angle = (2 * pi * index) / count;
+              return AnimatedBuilder(
+                animation: _controller,
+                builder: (context, child) {
+                  return Transform(
+                    alignment: Alignment.center,
+                    transform: Matrix4.identity()
+                      ..translate(
+                        radius * cos(angle + _controller.value * 2 * pi),
+                        radius * sin(angle + _controller.value * 2 * pi),
+                      )
+                      ..rotateZ(angle + _controller.value * 2 * pi),
+                    child: child,
+                  );
+                },
+                child: TrainLineLogo(
+                  circleColor: TrainLineLabelMapper.getLineColor(
+                    TrainLineLabel.values[index],
+                  ),
+                  text: TrainLineLabelMapper.getLogoText(
+                    TrainLineLabel.values[index],
+                  ),
+                  size: 60,
+                ),
+              );
+            }),
+          ],
+        ),
+      ),
+    );
   }
 
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      body: Center(
+      body: SafeArea(
         child: _isInitializing
-            ? Column(
-                mainAxisAlignment: MainAxisAlignment.center,
-                children: [
-                  const CircularProgressIndicator(),
-                  const SizedBox(height: 16),
-                  const Text('アプリを初期化中...'),
-                  const SizedBox(height: 16),
-                  ElevatedButton(
-                    onPressed: _navigateToDetectionScreen,
-                    child: const Text('検出画面に移動'),
-                  ),
-                ],
+            ? const Center(
+                child: Column(
+                  mainAxisAlignment: MainAxisAlignment.center,
+                  children: [
+                    CircularProgressIndicator(),
+                    SizedBox(height: 16),
+                    Text('アプリを初期化中...'),
+                  ],
+                ),
               )
-            : Column(
-                mainAxisAlignment: MainAxisAlignment.center,
-                children: [
-                  Text(
-                    _errorMessage ?? '初期化が完了しませんでした。',
-                    style: const TextStyle(color: Colors.red),
-                  ),
-                  const SizedBox(height: 16),
-                  ElevatedButton(
-                    onPressed: _navigateToSettings,
-                    child: const Text('設定画面に移動'),
-                  ),
-                  const SizedBox(height: 16),
-                  ElevatedButton(
-                    onPressed: _navigateToDetectionScreen,
-                    child: const Text('検出画面に移動'),
-                  ),
-                ],
+            : Padding(
+                padding: const EdgeInsets.all(16.0),
+                child: Column(
+                  children: [
+                    // ヘッダー部分
+                    const Text(
+                      'メトロファインダー',
+                      style: TextStyle(
+                        fontSize: 24,
+                        fontWeight: FontWeight.bold,
+                      ),
+                    ),
+                    const SizedBox(height: 40),
+                    // 円形に配置されたロゴ
+                    _buildCircularLogos(),
+                    const Spacer(),
+                    // 権限状態の表示
+                    Card(
+                      child: Padding(
+                        padding: const EdgeInsets.all(16.0),
+                        child: Column(
+                          crossAxisAlignment: CrossAxisAlignment.start,
+                          children: [
+                            const Text(
+                              'このアプリで必要な権限',
+                              style: TextStyle(
+                                fontSize: 18,
+                                fontWeight: FontWeight.bold,
+                              ),
+                            ),
+                            const SizedBox(height: 8),
+                            ..._permissionStatus.entries.map(
+                              (entry) => ListTile(
+                                leading: Icon(
+                                  entry.value
+                                      ? Icons.check_circle
+                                      : Icons.error_outline,
+                                  color:
+                                      entry.value ? Colors.green : Colors.red,
+                                ),
+                                title: Text(
+                                  switch (entry.key) {
+                                    Permission.camera => 'カメラ',
+                                    Permission.location => '位置情報',
+                                    _ => 'その他',
+                                  },
+                                ),
+                                dense: true,
+                              ),
+                            ),
+                          ],
+                        ),
+                      ),
+                    ),
+                    const SizedBox(height: 16),
+                    // ボタン
+                    Row(
+                      mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+                      children: [
+                        ElevatedButton(
+                          onPressed: _navigateToSettings,
+                          child: const Text('設定画面へ'),
+                        ),
+                        ElevatedButton(
+                          onPressed: _navigateToDetectionScreen,
+                          child: const Text('検出画面へ'),
+                        ),
+                      ],
+                    ),
+                  ],
+                ),
               ),
       ),
     );

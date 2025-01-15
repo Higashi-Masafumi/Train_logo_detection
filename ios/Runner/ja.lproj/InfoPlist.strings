@@ -19,5 +19,13 @@ NSPhotoLibraryUsageDescription = "画像に対して物体検出を行うため�
 NSMicrophoneUsageDescription = "マイクロフォンを音を検出するために利用する場合があります";
 
 /* NSLocationWhenInUseUsageDescription */
-NSLocationWhenInUseUsageDescription = "このアプリは位置情報を利用します";
+NSLocationWhenInUseUsageDescription = "メトロファインダーは位置情報を利用します";
 
+/* NSLocationAlwaysAndWhenInUseUsageDescription */
+NSLocationAlwaysAndWhenInUseUsageDescription = "メトロファインダーは位置情報を利用します";
+
+/* NSLocationAlwaysUsageDescription */
+NSLocationAlwaysUsageDescription = "メトロファインダーは位置情報を利用します";
+
+/* NSLocationWhenInUseUsageDescription */
+NSLocationWhenInUseUsageDescription = "メトロファインダーは位置情報を利用します";

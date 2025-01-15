@@ -7,7 +7,7 @@
 		<key>CFBundleDevelopmentRegion</key>
 		<string>$(DEVELOPMENT_LANGUAGE)</string>
 		<key>CFBundleDisplayName</key>
-		<string>Train Logo Detection App</string>
+		<string>メトロファインダー</string>
 		<key>CFBundleExecutable</key>
 		<string>$(EXECUTABLE_NAME)</string>
 		<key>CFBundleIdentifier</key>
@@ -27,13 +27,17 @@
 		<key>LSRequiresIPhoneOS</key>
 		<true/>
 		<key>NSCameraUsageDescription</key>
-		<string>物体検出のためにカメラを利用します</string>
+		<string>路線ロゴの検出のため、カメラへのアクセスが必要です。</string>
 		<key>NSPhotoLibraryUsageDescription</key>
-		<string>画像に対して物体検出を行うためにフォトライブラリにアクセスを求める場合があります</string>
+		<string>路線ロゴの検出のため、写真へのアクセスが必要です。</string>
 		<key>NSMicrophoneUsageDescription</key>
-		<string>マイクロフォンを音を検出するために利用する場合があります</string>
+		<string>ビデオ撮影時の音声録音のため、マイクへのアクセスが必要です。</string>
 		<key>NSLocationWhenInUseUsageDescription</key>
-		<string>このアプリは位置情報を利用します</string>
+		<string>最寄り駅の検索のため、現在地情報へのアクセスが必要です。</string>
+		<key>NSLocationAlwaysAndWhenInUseUsageDescription</key>
+		<string>最寄り駅の検索のため、現在地情報へのアクセスが必要です。</string>
+		<key>NSLocationAlwaysUsageDescription</key>
+		<string>最寄り駅の検索のため、現在地情報へのアクセスが必要です。</string>
 		<key>NSAppTransportSecurity</key>
 		<dict>
 			<key>NSAllowsArbitraryLoads</key>
@@ -66,6 +70,9 @@
 			<string>http</string>
 			<string>https</string>
 			<string>google-maps</string>
+		</array>
+		<key>UIBackgroundModes</key>
+		<array>
 		</array>
 	</dict>
 </plist>
