@@ -126,8 +126,8 @@ class _InitializationScreenState extends State<InitializationScreen>
                 const SizedBox(height: 8),
                 ...missingPermissions.map((permission) {
                   String permissionName = switch (permission) {
-                    Permission.camera => 'カメラ',
-                    Permission.location => '位置情報',
+                    Permission.camera => 'カメラ(Camera Usage)',
+                    Permission.location => '位置情報(Location Usage)',
                     _ => 'その他',
                   };
                   return Text('・$permissionName');
@@ -278,8 +278,10 @@ class _InitializationScreenState extends State<InitializationScreen>
                                 ),
                                 title: Text(
                                   switch (entry.key) {
-                                    Permission.camera => 'カメラ',
-                                    Permission.location => '位置情報',
+                                    Permission.camera =>
+                                      'カメラ(Camera Usage Permission)',
+                                    Permission.location =>
+                                      '位置情報(Location Usage Permission)',
                                     _ => 'その他',
                                   },
                                 ),

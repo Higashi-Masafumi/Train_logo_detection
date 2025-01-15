@@ -9,7 +9,7 @@ import 'package:train_logo_detection_app/domain/repositories/location_repository
 
 // リポジトリ
 final trainRouteRepositoryProvider = Provider<TrainRouteRepository>((ref) {
-  final databaseService = RailwayDatabaseService.instance;
+  final databaseService = RailwayDatabaseService();
   return OdptTrainRouteRepository(databaseService);
 });
 
