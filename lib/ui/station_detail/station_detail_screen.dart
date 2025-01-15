@@ -179,23 +179,23 @@ class _StationDetailScreenState extends ConsumerState<StationDetailScreen> {
               ),
             ],
 
-            // 時刻表情報があれば表示
-            if (widget.station.stationTimetable?.isNotEmpty ?? false) ...[
-              const Padding(
-                padding: EdgeInsets.all(16),
-                child: Text(
-                  '時刻表情報',
-                  style: TextStyle(
-                    fontSize: 18,
-                    fontWeight: FontWeight.bold,
-                  ),
-                ),
-              ),
-              Padding(
-                padding: const EdgeInsets.symmetric(horizontal: 16),
-                child: Text(widget.station.stationTimetable!.join('\n')),
-              ),
-            ],
+            // // 時刻表情報があれば表示
+            // if (widget.station.stationTimetable?.isNotEmpty ?? false) ...[
+            //   const Padding(
+            //     padding: EdgeInsets.all(16),
+            //     child: Text(
+            //       '時刻表情報',
+            //       style: TextStyle(
+            //         fontSize: 18,
+            //         fontWeight: FontWeight.bold,
+            //       ),
+            //     ),
+            //   ),
+            //   Padding(
+            //     padding: const EdgeInsets.symmetric(horizontal: 16),
+            //     child: Text(widget.station.stationTimetable!.join('\n')),
+            //   ),
+            // ],
           ],
         ),
       ),

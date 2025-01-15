@@ -92,7 +92,6 @@ flutter:
   assets:
     - assets/imgsz_320_192.mlmodel
     - assets/metro_finder_yolo11.mlmodel
-    - assets/train_data.db
     - assets/railway.db
     - assets/IMG_0248.PNG
   # An image asset can refer to one or more resolution-specific "variants", see
