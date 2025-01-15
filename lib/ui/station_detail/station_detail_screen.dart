@@ -25,10 +25,11 @@ class _StationDetailScreenState extends ConsumerState<StationDetailScreen> {
     return Scaffold(
       appBar: AppBar(
         title: Row(
+          mainAxisAlignment: MainAxisAlignment.center,
           children: [
+            Text(widget.station.title),
             const Icon(Icons.train_outlined, color: Colors.white),
             const SizedBox(width: 8),
-            Text(widget.station.title),
           ],
         ),
         backgroundColor: Colors.lightBlueAccent,
