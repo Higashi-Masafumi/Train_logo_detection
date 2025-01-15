@@ -21,3 +21,11 @@ NSMicrophoneUsageDescription = "The microphone may be used to detect sounds";
 /* NSLocationWhenInUseUsageDescription */
 NSLocationWhenInUseUsageDescription = "This app uses location information";
 
+/* NSLocationAlwaysAndWhenInUseUsageDescription */
+NSLocationAlwaysAndWhenInUseUsageDescription = "This app uses location information";
+
+/* NSLocationAlwaysUsageDescription */
+NSLocationAlwaysUsageDescription = "This app uses location information";
+
+/* NSLocationWhenInUseUsageDescription */
+NSLocationWhenInUseUsageDescription = "This app uses location information";
