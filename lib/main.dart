@@ -9,6 +9,7 @@ import 'package:train_logo_detection_app/data/services/google_ml_text_recognitio
 import 'package:permission_handler/permission_handler.dart';
 import 'package:train_logo_detection_app/config/train_logo.dart';
 import 'package:train_logo_detection_app/ui/core/train_logo.dart';
+import 'package:train_logo_detection_app/utils/check_permission.dart';
 
 void main() async {
   WidgetsFlutterBinding.ensureInitialized(); // Flutter Engineの初期化
@@ -16,6 +17,7 @@ void main() async {
   await UltralyticsYoloModelService().initializeObjectDetector(); // YOLOモデルの初期化
   YoloCameraService().initialize(); // カメラの初期化
   GoogleMlTextRecognition().initialize(); // Google ML Kitの初期化
+  await checkPermissions();
   runApp(
     const ProviderScope(
       child: MyApp(),

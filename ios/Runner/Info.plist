@@ -27,17 +27,17 @@
 		<key>LSRequiresIPhoneOS</key>
 		<true/>
 		<key>NSCameraUsageDescription</key>
-		<string>路線ロゴの検出のため、カメラへのアクセスが必要です。</string>
+		<string>This app uses camera for train logo detection.</string>
 		<key>NSPhotoLibraryUsageDescription</key>
-		<string>路線ロゴの検出のため、写真へのアクセスが必要です。</string>
+		<string>This app uses photo library for train logo detection.</string>
 		<key>NSMicrophoneUsageDescription</key>
-		<string>ビデオ撮影時の音声録音のため、マイクへのアクセスが必要です。</string>
+		<string>This app uses microphone for train logo detection.</string>
 		<key>NSLocationWhenInUseUsageDescription</key>
-		<string>最寄り駅の検索のため、現在地情報へのアクセスが必要です。</string>
+		<string>This app uses location information for train logo detection.</string>
 		<key>NSLocationAlwaysAndWhenInUseUsageDescription</key>
-		<string>最寄り駅の検索のため、現在地情報へのアクセスが必要です。</string>
+		<string>This app uses location information for train logo detection.</string>
 		<key>NSLocationAlwaysUsageDescription</key>
-		<string>最寄り駅の検索のため、現在地情報へのアクセスが必要です。</string>
+		<string>This app uses location information for train logo detection.</string>
 		<key>NSAppTransportSecurity</key>
 		<dict>
 			<key>NSAllowsArbitraryLoads</key>

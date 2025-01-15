@@ -5,25 +5,21 @@ Future<bool> checkPermissions() async {
   List<Permission> permissions = [];
 
   var cameraStatus = await Permission.camera.status;
+  debugPrint("Camera status: $cameraStatus");
   if (!cameraStatus.isGranted) permissions.add(Permission.camera);
 
-  var storageStatus = await Permission.storage.status;
-  if (!storageStatus.isGranted) permissions.add(Permission.storage);
-
   var locationStatus = await Permission.locationWhenInUse.status;
+  debugPrint("Location status: $locationStatus");
   if (!locationStatus.isGranted) permissions.add(Permission.locationWhenInUse);
 
-  if (permissions.isEmpty) {
-    return true;
-  } else {
-    try {
-      Map<Permission, PermissionStatus> statuses = await permissions.request();
-      return statuses[Permission.camera] == PermissionStatus.granted &&
-          statuses[Permission.storage] == PermissionStatus.granted &&
-          statuses[Permission.locationWhenInUse] == PermissionStatus.granted;
-    } on Exception catch (e) {
-      debugPrint("Error checking permissions: $e");
-      return false;
-    }
+  if (permissions.isEmpty) return true;
+
+  try {
+    debugPrint("Requesting permissions: $permissions");
+    Map<Permission, PermissionStatus> statuses = await permissions.request();
+    return statuses.values.every((status) => status.isGranted);
+  } catch (e) {
+    debugPrint("Error checking permissions: $e");
+    return false;
   }
 }
