@@ -115,7 +115,6 @@ class RailwayDatabaseService {
           : null,
     };
 
-    debugPrint('Converted to model map: $modelMap');
     return modelMap;
   }
 

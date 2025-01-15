@@ -24,7 +24,14 @@ class _StationDetailScreenState extends ConsumerState<StationDetailScreen> {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
-        title: Text(widget.station.title),
+        title: Row(
+          mainAxisAlignment: MainAxisAlignment.center,
+          children: [
+            Text(widget.station.title),
+            const Icon(Icons.train_outlined, color: Colors.white),
+            const SizedBox(width: 8),
+          ],
+        ),
         backgroundColor: Colors.lightBlueAccent,
       ),
       body: SingleChildScrollView(

@@ -32,20 +32,13 @@ class _RealtimeDetectionScreenState
 
     return Scaffold(
       appBar: AppBar(
-        title: const Text('リアルタイムメトロ検出'),
+        title: const Text('路線ロゴ検出'),
         backgroundColor: Colors.lightBlueAccent,
         titleTextStyle: const TextStyle(
           color: Colors.white,
           fontSize: 20,
           fontWeight: FontWeight.bold,
         ),
-        actions: [
-          IconButton(
-            icon: const Icon(Icons.refresh_rounded),
-            // モデルの再読み込み
-            onPressed: () {},
-          ),
-        ],
       ),
       body: Stack(
         children: [
