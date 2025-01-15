@@ -260,7 +260,7 @@ class _InitializationScreenState extends State<InitializationScreen>
                           crossAxisAlignment: CrossAxisAlignment.start,
                           children: [
                             const Text(
-                              '必要な権限',
+                              'このアプリで必要な権限',
                               style: TextStyle(
                                 fontSize: 18,
                                 fontWeight: FontWeight.bold,
