@@ -39,6 +39,7 @@ class _StationDetailScreenState extends ConsumerState<StationDetailScreen> {
                 children: [
                   // 駅名と駅番号
                   Row(
+                    crossAxisAlignment: CrossAxisAlignment.start,
                     children: [
                       TrainLineLogo(
                         circleColor: Color(
@@ -60,9 +61,11 @@ class _StationDetailScreenState extends ConsumerState<StationDetailScreen> {
                                   ?.copyWith(
                                     fontWeight: FontWeight.bold,
                                   ),
+                              softWrap: true,
                             ),
                             const SizedBox(height: 4),
-                            Row(
+                            Wrap(
+                              spacing: 8,
                               children: [
                                 Text(
                                   widget.station.stationTitle['en'] ?? '',
@@ -75,15 +78,12 @@ class _StationDetailScreenState extends ConsumerState<StationDetailScreen> {
                                 ),
                                 if (widget.station.stationTitle['ko'] !=
                                     null) ...[
-                                  const SizedBox(width: 8),
                                   Container(
                                     width: 1,
                                     height: 16,
                                     color: Colors.grey[300],
                                   ),
-                                  const SizedBox(width: 8),
                                   Text(
-                                    textAlign: TextAlign.left,
                                     widget.station.stationTitle['ko'] ?? '',
                                     style: Theme.of(context)
                                         .textTheme

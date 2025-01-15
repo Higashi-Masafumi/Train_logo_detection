@@ -7,7 +7,7 @@ abstract class TrainRouteRepository {
 
   // station_orderから駅のリストを取得する
   Future<List<Station>> getStations(List<String> stationOrder);
-  
+
   // 駅IDから駅を取得する
   Future<List<Station>> getConnectingStations(
       Station station); // String stationId -> Station station

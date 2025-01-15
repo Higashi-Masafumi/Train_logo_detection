@@ -2,7 +2,7 @@ import 'dart:math';
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:train_logo_detection_app/ui/realtime_detection/realtime_detection_screen.dart';
-import 'package:train_logo_detection_app/ui/detection_detail.dart/detection_detail_screen.dart';
+import 'package:train_logo_detection_app/ui/detection_detail/detection_detail_screen.dart';
 import 'package:train_logo_detection_app/data/services/yolo_model.dart';
 import 'package:train_logo_detection_app/data/services/yolo_camera.dart';
 import 'package:train_logo_detection_app/data/services/google_ml_text_recognition.dart';
@@ -126,8 +126,8 @@ class _InitializationScreenState extends State<InitializationScreen>
                 const SizedBox(height: 8),
                 ...missingPermissions.map((permission) {
                   String permissionName = switch (permission) {
-                    Permission.camera => 'カメラ',
-                    Permission.location => '位置情報',
+                    Permission.camera => 'カメラ(Camera Usage)',
+                    Permission.location => '位置情報(Location Usage)',
                     _ => 'その他',
                   };
                   return Text('・$permissionName');
@@ -278,8 +278,10 @@ class _InitializationScreenState extends State<InitializationScreen>
                                 ),
                                 title: Text(
                                   switch (entry.key) {
-                                    Permission.camera => 'カメラ',
-                                    Permission.location => '位置情報',
+                                    Permission.camera =>
+                                      'カメラ(Camera Usage Permission)',
+                                    Permission.location =>
+                                      '位置情報(Location Usage Permission)',
                                     _ => 'その他',
                                   },
                                 ),

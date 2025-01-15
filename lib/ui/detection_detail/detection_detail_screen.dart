@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
-import 'package:train_logo_detection_app/ui/detection_detail.dart/detection_detail_view_model.dart';
+import 'package:train_logo_detection_app/ui/detection_detail/detection_detail_viewmodel.dart';
 import 'package:train_logo_detection_app/ui/core/train_logo.dart';
 import 'package:train_logo_detection_app/ui/station_detail/station_detail_screen.dart';
 class DetectionDetailScreen extends ConsumerStatefulWidget {

@@ -14,7 +14,6 @@ class GeolocatorService {
           distanceFilter: 0,
         ),
       );
-      debugPrint('Current location: ${position.toString()}');
       return position;
     } catch (e) {
       debugPrint('Error getting location: $e');
