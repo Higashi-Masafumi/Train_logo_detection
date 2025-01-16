@@ -2,30 +2,25 @@
   InfoPlist.strings
   Runner
 
-  Created by 東　真史 on 2024/11/25.
+  Created by 東　真史 on 2025/01/17.
   
 */
 
-/* CFBundleDisplayName */
-CFBundleDisplayName = "メトロファインダー";
+"CFBundleDisplayName" = "メトロファインダー";
+"CFBundleName" = "メトロファインダー";
+"CFBundleIdentifier" = "com.example.metrofinder";
+"CFBundleVersion" = "1.0.0";
+"CFBundleShortVersionString" = "1.0.0";
+"CFBundleExecutable" = "Runner";
+"CFBundlePackageType" = "APPL";
+"CFBundleInfoDictionaryVersion" = "6.0";
+"CFBundleDevelopmentRegion" = "ja";
+"LSRequiresIPhoneOS" = true;
+"NSCameraUsageDescription" = "このアプリはカメラを使用して列車ロゴの検出に使用します。";
+"NSPhotoLibraryUsageDescription" = "このアプリは写真ライブラリを使用して列車ロゴの検出に使用します。";
+"NSMicrophoneUsageDescription" = "このアプリはマイクを使用して列車ロゴの検出に使用します。";
+"NSLocationWhenInUseUsageDescription" = "このアプリは位置情報を使用して最寄りの駅の検出に使用します。許可しなくてもロゴ検出は可能です。";
+"NSLocationAlwaysAndWhenInUseUsageDescription" = "このアプリは位置情報を使用して最寄りの駅の検出に使用します。許可しなくてもロゴ検出は可能です。";
+"NSLocationAlwaysUsageDescription" = "このアプリは位置情報を使用して最寄りの駅の検出に使用します。許可しなくてもロゴ検出は可能です。";
 
-/* NSCameraUsageDescription */
-NSCameraUsageDescription = "物体検出のためにカメラを利用します";
 
-/* NSPhotoLibraryUsageDescription */
-NSPhotoLibraryUsageDescription = "画像に対して物体検出を行うためにフォトライブラリにアクセスを求める場合があります";
-
-/* NSMicrophoneUsageDescription */
-NSMicrophoneUsageDescription = "マイクロフォンを音を検出するために利用する場合があります";
-
-/* NSLocationWhenInUseUsageDescription */
-NSLocationWhenInUseUsageDescription = "メトロファインダーは位置情報を利用します";
-
-/* NSLocationAlwaysAndWhenInUseUsageDescription */
-NSLocationAlwaysAndWhenInUseUsageDescription = "メトロファインダーは位置情報を利用します";
-
-/* NSLocationAlwaysUsageDescription */
-NSLocationAlwaysUsageDescription = "メトロファインダーは位置情報を利用します";
-
-/* NSLocationWhenInUseUsageDescription */
-NSLocationWhenInUseUsageDescription = "メトロファインダーは位置情報を利用します";
