@@ -107,33 +107,20 @@ class _InitializationScreenState extends State<InitializationScreen>
   }
 
   Future<void> _navigateToDetectionScreen() async {
-    // 必要な権限が不足している場合
-    final missingPermissions = _permissionStatus.entries
-        .where((e) => !e.value)
-        .map((e) => e.key)
-        .toList();
-
-    if (missingPermissions.isNotEmpty) {
-      // 権限が不足している場合はダイアログを表示
+    // カメラ権限のみ必須とする
+    if (!_permissionStatus[Permission.camera]!) {
       if (mounted) {
         showDialog(
           context: context,
           builder: (context) => AlertDialog(
             title: const Text('必要な権限が不足しています'),
-            content: Column(
+            content: const Column(
               mainAxisSize: MainAxisSize.min,
               crossAxisAlignment: CrossAxisAlignment.start,
               children: [
-                const Text('以下の権限が必要です：'),
-                const SizedBox(height: 8),
-                ...missingPermissions.map((permission) {
-                  String permissionName = switch (permission) {
-                    Permission.camera => 'カメラ(Camera Usage)',
-                    Permission.location => '位置情報(Location Usage)',
-                    _ => 'その他',
-                  };
-                  return Text('・$permissionName');
-                }),
+                Text('以下の権限が必要です：'),
+                SizedBox(height: 8),
+                Text('・カメラ(Camera Usage)'),
               ],
             ),
             actions: [
@@ -275,18 +262,29 @@ class _InitializationScreenState extends State<InitializationScreen>
                                   entry.value
                                       ? Icons.check_circle
                                       : Icons.error_outline,
-                                  color:
-                                      entry.value ? Colors.green : Colors.red,
+                                  color: entry.key == Permission.camera
+                                      ? (entry.value
+                                          ? Colors.green
+                                          : Colors.red)
+                                      : (entry.value
+                                          ? Colors.green
+                                          : Colors.orange),
                                 ),
                                 title: Text(
                                   switch (entry.key) {
                                     Permission.camera =>
                                       'カメラ(Camera Usage Permission)',
                                     Permission.location =>
-                                      '位置情報(Location Usage Permission)',
+                                      '位置情報(Location Usage Permission) - オプション',
                                     _ => 'その他',
                                   },
                                 ),
+                                subtitle: entry.key == Permission.location &&
+                                        !entry.value
+                                    ? const Text(
+                                        '位置情報を許可すると、最寄駅を検出できます',
+                                        style: TextStyle(fontSize: 12))
+                                    : null,
                                 dense: true,
                               ),
                             ),
