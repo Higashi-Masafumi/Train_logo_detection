@@ -66,10 +66,11 @@
 		<false/>
 		<key>LSApplicationQueriesSchemes</key>
 		<array>
+			<string>maps</string>
 			<string>geo</string>
 			<string>http</string>
 			<string>https</string>
-			<string>google-maps</string>
+			<string>comgooglemaps</string>
 		</array>
 		<key>UIBackgroundModes</key>
 		<array>

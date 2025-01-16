@@ -126,25 +126,80 @@ class _StationDetailScreenState extends ConsumerState<StationDetailScreen> {
                             borderRadius: BorderRadius.circular(8),
                             side: BorderSide(color: Colors.grey.shade300),
                           ),
-                          onTap: () => ref
-                              .read(stationDetailViewModelProvider(
-                                  (widget.station, widget.line)).notifier)
-                              .openMap(),
+                          onTap: () {
+                            showModalBottomSheet(
+                              context: context,
+                              builder: (context) => SafeArea(
+                                child: Column(
+                                  mainAxisSize: MainAxisSize.min,
+                                  children: [
+                                    const Padding(
+                                      padding: EdgeInsets.all(16),
+                                      child: Text(
+                                        '地図アプリを選択',
+                                        style: TextStyle(
+                                          fontSize: 16,
+                                          fontWeight: FontWeight.bold,
+                                        ),
+                                      ),
+                                    ),
+                                    ...MapApp.values.map(
+                                      (app) => ListTile(
+                                        leading: switch (app) {
+                                          MapApp.google => const Icon(
+                                              Icons.g_mobiledata_rounded,
+                                              size: 28,
+                                            ),
+                                          MapApp.apple =>
+                                            const Icon(Icons.apple),
+                                          MapApp.web =>
+                                            const Icon(Icons.public),
+                                        },
+                                        title: Text(app.label),
+                                        onTap: () {
+                                          Navigator.pop(context);
+                                          ref
+                                              .read(
+                                                  stationDetailViewModelProvider((
+                                                widget.station,
+                                                widget.line
+                                              )).notifier)
+                                              .openMap(mapApp: app);
+                                        },
+                                      ),
+                                    ),
+                                  ],
+                                ),
+                              ),
+                            );
+                          },
                         ),
                         // エラー表示
                         ref
                                 .watch(stationDetailViewModelProvider(
                                     (widget.station, widget.line)))
                                 .whenOrNull(
-                                  error: (error, _) => Padding(
-                                    padding: const EdgeInsets.only(top: 8),
-                                    child: Text(
-                                      'エラー: $error',
-                                      style: const TextStyle(
-                                          color: Colors.red, fontSize: 12),
+                              error: (error, _) {
+                                // エラーが発生したらスナックバーを表示
+                                WidgetsBinding.instance
+                                    .addPostFrameCallback((_) {
+                                  ScaffoldMessenger.of(context).showSnackBar(
+                                    SnackBar(
+                                      content: Text(error.toString()),
+                                      behavior: SnackBarBehavior.floating,
+                                      action: SnackBarAction(
+                                        label: '閉じる',
+                                        onPressed: () {
+                                          ScaffoldMessenger.of(context)
+                                              .hideCurrentSnackBar();
+                                        },
+                                      ),
                                     ),
-                                  ),
-                                ) ??
+                                  );
+                                });
+                                return null;
+                              },
+                            ) ??
                             const SizedBox.shrink(),
                       ],
                     ),
