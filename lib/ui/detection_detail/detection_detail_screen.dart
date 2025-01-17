@@ -12,6 +12,13 @@ class DetectionDetailScreen extends ConsumerStatefulWidget {
 }
 
 class _DetectionDetailScreenState extends ConsumerState<DetectionDetailScreen> {
+  // 駅番号から路線記号を除いた数字部分のみを取得するヘルパーメソッド
+  String _getStationNumberOnly(String stationCode, String lineCode) {
+    // 正規表現を使用して数字部分を抽出
+    final numberMatch = RegExp(r'\d+').firstMatch(stationCode);
+    return numberMatch?.group(0) ?? '';
+  }
+
   @override
   Widget build(BuildContext context) {
     final viewModel = ref.watch(trainRouteViewModelProvider);
@@ -92,7 +99,9 @@ class _DetectionDetailScreenState extends ConsumerState<DetectionDetailScreen> {
                   leading: TrainLineLogo(
                     // 最寄駅ならアイコンを少し強調しても良い
                     circleColor: isCurrentStation ? Colors.red : trainColor,
-                    text: station.stationCode,
+                    text: trainRouteInfo.line.lineCode,
+                    subText: _getStationNumberOnly(
+                        station.stationCode, trainRouteInfo.line.lineCode),
                     size: 40,
                   ),
                   title: Row(

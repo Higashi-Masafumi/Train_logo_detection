@@ -5,6 +5,9 @@ abstract class TrainRouteRepository {
   // detectionResultから路線情報を取得する
   Future<TrainLine> getTrainRouteInfo(TrainLogoDetectionResult result);
 
+  // owlをもとに駅を取得する
+  Future<Station> getStaion(String owlSameAs);
+
   // station_orderから駅のリストを取得する
   Future<List<Station>> getStations(List<String> stationOrder);
 

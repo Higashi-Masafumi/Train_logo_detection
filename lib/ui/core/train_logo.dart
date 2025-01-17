@@ -52,7 +52,9 @@ class TrainLineLogoPainter extends CustomPainter {
         text: text,
         style: TextStyle(
           color: Colors.black,
-          fontSize: subText == null ? size.width / 2.5 : size.width / 3, // サブテキストがない場合、フォントサイズを大きく
+          fontSize: subText == null
+              ? size.width / 2.5
+              : size.width / 3, // サブテキストがない場合、フォントサイズを大きく
           fontWeight: FontWeight.bold,
         ),
       ),
@@ -80,7 +82,8 @@ class TrainLineLogoPainter extends CustomPainter {
           text: subText,
           style: TextStyle(
             color: Colors.black,
-            fontSize: size.width / 6,
+            fontSize: size.width / 4,
+            fontWeight: FontWeight.bold,
           ),
         ),
         textAlign: TextAlign.center,
@@ -91,7 +94,7 @@ class TrainLineLogoPainter extends CustomPainter {
         canvas,
         Offset(
           size.width / 2 - subTextPainter.width / 2,
-          size.height / 2 + textPainter.height / 4,
+          size.height / 2 + textPainter.height / 8,
         ),
       );
     }

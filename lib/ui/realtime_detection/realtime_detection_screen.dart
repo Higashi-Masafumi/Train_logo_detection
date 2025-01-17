@@ -31,15 +31,6 @@ class _RealtimeDetectionScreenState
     final viewModel = ref.watch(realtimeDetectionViewmodelProvider);
 
     return Scaffold(
-      appBar: AppBar(
-        title: const Text('路線ロゴ検出'),
-        backgroundColor: Colors.lightBlueAccent,
-        titleTextStyle: const TextStyle(
-          color: Colors.white,
-          fontSize: 20,
-          fontWeight: FontWeight.bold,
-        ),
-      ),
       body: Stack(
         children: [
           // カメラプレビューと物体検出

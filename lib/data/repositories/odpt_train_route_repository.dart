@@ -41,6 +41,30 @@ class OdptTrainRouteRepository implements TrainRouteRepository {
   }
 
   @override
+  Future<Station> getStaion(String owlSameAs) async {
+    final odptStation = await _databaseService.getStationByOwlSameAs(owlSameAs);
+    if (odptStation == null) {
+      throw Exception('Station not found: $owlSameAs');
+    }
+    return Station(
+      id: odptStation.id,
+      type: odptStation.type,
+      latitude: odptStation.latitude,
+      longitude: odptStation.longitude,
+      title: odptStation.title,
+      owlSameAs: odptStation.owlSameAs,
+      line: odptStation.line,
+      operatorId: odptStation.operator,
+      stationCode: odptStation.stationCode,
+      stationTitle: odptStation.stationTitle,
+      passengerSurvey: odptStation.passengerSurvey,
+      stationTimetable: odptStation.stationTimetable,
+      connectingLines: [], // 必要に応じて後で設定
+      connectingStations: [], // 必要に応じて後で設定
+    );
+  }
+
+  @override
   Future<List<Station>> getStations(List<String> stationOrder) async {
     try {
       final stations = await Future.wait(
