@@ -12,15 +12,18 @@
 - カメラの利用は、メトロファインダーの機能を利用するために必要です。
 - 位置情報の利用は、最寄り駅を検索するためにのみ必要であり、必須ではありません。
 
-![カメラ権限の要求](./images/camera_usage_request.png)
-
-![位置情報権限の要求](./images/location_usage_with_mosaic.png)
+<table>
+<tr>
+<td><img src="./images/camera_usage_request.png" alt="カメラ権限の要求" width="300"/></td>
+<td><img src="./images/location_usage_with_mosaic.png" alt="位置情報権限の要求" width="300"/></td>
+</tr>
+</table>
 
 ### 3. 初期画面
 
 - 権限を許可すると、以下の画面が表示されます。
 
-![初期画面](./images/initial_screen.png)
+<img src="./images/initial_screen.png" alt="初期画面" width="300"/>
 
 - 画面右下の「検出画面へ」ボタンを押すと、検出画面に移ります。
 
@@ -31,9 +34,12 @@
 - 枠線内をタップすると、検出結果が表示されます
 - ダイアログの「路線情報を見る」ボタンを押すと、路線情報画面に移ります
 
-![検出画面](./images/detection_screen.png)
-
-![検出結果ダイアログ](./images/detection_result_dialog.png)
+<table>
+<tr>
+<td><img src="./images/detection_screen.png" alt="検出画面" width="300"/></td>
+<td><img src="./images/detection_result_dialog.png" alt="検出結果ダイアログ" width="300"/></td>
+</tr>
+</table>
 
 ### 5. 路線情報画面
 
@@ -41,18 +47,18 @@
 - 画面上部の「戻る」ボタンを押すと、検出画面に戻ります。
 - 駅のリストから駅を選択すると、駅情報画面に移ります。
 
-![路線情報画面](./images/line_info_screen.png)
+<img src="./images/line_info_screen.png" alt="路線情報画面" width="300"/>
 
 ### 6. 駅情報画面
 
 - 駅情報画面では、検出結果の路線についての情報を表示します。
 - 画面上部の「戻る」ボタンを押すと、路線情報画面に戻ります。
 
-![駅情報画面](./images/station_info_screen.png)
+<img src="./images/station_info_screen.png" alt="駅情報画面" width="300"/>
 
 ### 7. 駅の地図情報の表示
 
 - 駅情報画面で「地図で見る」ボタンを押すと、以下のように地図アプリを選択するダイアログが表示されます。
 - 地図アプリを選択すると、地図アプリが起動して、駅の位置が表示されます。
 
-![地図で見る](./images/map_view_dialog.png)
+<img src="./images/map_view_dialog.png" alt="地図で見る" width="300"/>
