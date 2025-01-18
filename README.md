@@ -1,4 +1,4 @@
-# train_logo_detection_app
+# train_logo_detection_app（メトロファインダー）
 
 A new Flutter project.
 
