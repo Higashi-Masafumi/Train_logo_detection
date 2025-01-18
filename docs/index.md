@@ -12,15 +12,15 @@
 - カメラの利用は、メトロファインダーの機能を利用するために必要です。
 - 位置情報の利用は、最寄り駅を検索するためにのみ必要であり、必須ではありません。
 
-![カメラ権限の要求](./images/camera_usage_request.PNG)
+![カメラ権限の要求](./images/camera_usage_request.png)
 
-![位置情報権限の要求](./images/location_usage_request.PNG)
+![位置情報権限の要求](./images/location_usage_request.png)
 
 ### 3. 初期画面
 
 - 権限を許可すると、以下の画面が表示されます。
 
-![初期画面](./images/initial_screen.PNG)
+![初期画面](./images/initial_screen.png)
 
 - 画面右下の「検出画面へ」ボタンを押すと、検出画面に移ります。
 
