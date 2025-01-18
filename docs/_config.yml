@@ -1,0 +1,13 @@
+remote_theme: pages-themes/cayman@v0.2.0
+plugins:
+- jekyll-remote-theme
+
+title: メトロファインダー
+description: 地下鉄の路線ロゴを検出して時刻表を表示するアプリ
+show_downloads: false
+
+# テーマのカスタマイズ
+colors:
+  header: "#009BBF"  # アプリのメインカラー
+  gradient_top: "#009BBF"
+  gradient_bottom: "#007A99" 
