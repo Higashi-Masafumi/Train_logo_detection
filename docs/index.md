@@ -14,7 +14,7 @@
 
 ![カメラ権限の要求](./images/camera_usage_request.png)
 
-![位置情報権限の要求](./images/location_usage_request.png)
+![位置情報権限の要求](./images/location_usage_with_mosaic.png)
 
 ### 3. 初期画面
 
