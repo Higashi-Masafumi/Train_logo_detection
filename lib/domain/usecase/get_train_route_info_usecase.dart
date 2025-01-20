@@ -8,7 +8,7 @@ class GetTrainRouteInfoUseCase {
   final LocationRepository _locationRepository;
 
   // 最寄駅と判定する最大距離（メートル）
-  static const double _maxDistanceMeters = 1000.0;
+  static const double _maxDistanceMeters = 500.0;
 
   GetTrainRouteInfoUseCase(
       this._trainRouteRepository, this._locationRepository);
@@ -20,24 +20,33 @@ class GetTrainRouteInfoUseCase {
     // 2.路線情報から駅情報を取得
     final stations =
         await _trainRouteRepository.getStations(trainLine.stationOrder);
-    // 3. 駅情報から最も近くある程度の距離にある駅を取得する
+
+    // 3. 全ての駅との距離を計算し、ソートしてから最寄駅を決定
     final currentLocation = await _locationRepository.getCurrentLocation();
     Station? nearestStation;
-    double minDistance = double.infinity;
+
     if (currentLocation != null) {
-      for (final station in stations) {
-        final distance = await _locationRepository.getDistanceToStation(
-          station.latitude,
-          station.longitude,
-        );
-        if (distance != null &&
-            distance < minDistance &&
-            distance <= _maxDistanceMeters) {
-          minDistance = distance;
-          nearestStation = station;
-        }
+      // 全ての駅との距離を計算
+      final stationsWithDistance = await Future.wait(
+        stations.map((station) async {
+          final distance = await _locationRepository.getDistanceToStation(
+            station.latitude,
+            station.longitude,
+          );
+          return (station, distance ?? double.infinity);
+        }),
+      );
+
+      // 距離でソートして、最も近い駅を取得
+      stationsWithDistance.sort((a, b) => a.$2.compareTo(b.$2));
+
+      // 最大距離以内で最も近い駅を選択
+      if (stationsWithDistance.isNotEmpty &&
+          stationsWithDistance.first.$2 <= _maxDistanceMeters) {
+        nearestStation = stationsWithDistance.first.$1;
       }
     }
+
     return TrainRouteInfo(
       line: trainLine,
       stations: stations,
