@@ -62,3 +62,7 @@
 - 地図アプリを選択すると、地図アプリが起動して、駅の位置が表示されます。
 
 <img src="./images/map_view_dialog.png" alt="地図で見る" width="300"/>
+
+---
+
+[プライバシーポリシー](privacy.html)
