@@ -8,6 +8,6 @@ show_downloads: false
 
 # テーマのカスタマイズ
 colors:
-  header: "#009BBF"  # アプリのメインカラー
-  gradient_top: "#009BBF"
-  gradient_bottom: "#007A99" 
+  header: "#00BBE7"  # アプリのメインカラー
+  gradient_top: "#00BBE7"
+  gradient_bottom: "#03A9D3" 
