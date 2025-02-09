@@ -838,9 +838,301 @@ abstract class _Station implements Station {
 }
 
 /// @nodoc
+mixin _$TrainStatus {
+  String get id => throw _privateConstructorUsedError;
+  String get type => throw _privateConstructorUsedError;
+  DateTime get valid => throw _privateConstructorUsedError;
+  String get owlSameAs => throw _privateConstructorUsedError;
+  String get railway => throw _privateConstructorUsedError;
+  String get operator => throw _privateConstructorUsedError;
+  DateTime get timeOfOrigin => throw _privateConstructorUsedError;
+  Map<String, String> get trainStatusText => throw _privateConstructorUsedError;
+
+  /// Create a copy of TrainStatus
+  /// with the given fields replaced by the non-null parameter values.
+  @JsonKey(includeFromJson: false, includeToJson: false)
+  $TrainStatusCopyWith<TrainStatus> get copyWith =>
+      throw _privateConstructorUsedError;
+}
+
+/// @nodoc
+abstract class $TrainStatusCopyWith<$Res> {
+  factory $TrainStatusCopyWith(
+          TrainStatus value, $Res Function(TrainStatus) then) =
+      _$TrainStatusCopyWithImpl<$Res, TrainStatus>;
+  @useResult
+  $Res call(
+      {String id,
+      String type,
+      DateTime valid,
+      String owlSameAs,
+      String railway,
+      String operator,
+      DateTime timeOfOrigin,
+      Map<String, String> trainStatusText});
+}
+
+/// @nodoc
+class _$TrainStatusCopyWithImpl<$Res, $Val extends TrainStatus>
+    implements $TrainStatusCopyWith<$Res> {
+  _$TrainStatusCopyWithImpl(this._value, this._then);
+
+  // ignore: unused_field
+  final $Val _value;
+  // ignore: unused_field
+  final $Res Function($Val) _then;
+
+  /// Create a copy of TrainStatus
+  /// with the given fields replaced by the non-null parameter values.
+  @pragma('vm:prefer-inline')
+  @override
+  $Res call({
+    Object? id = null,
+    Object? type = null,
+    Object? valid = null,
+    Object? owlSameAs = null,
+    Object? railway = null,
+    Object? operator = null,
+    Object? timeOfOrigin = null,
+    Object? trainStatusText = null,
+  }) {
+    return _then(_value.copyWith(
+      id: null == id
+          ? _value.id
+          : id // ignore: cast_nullable_to_non_nullable
+              as String,
+      type: null == type
+          ? _value.type
+          : type // ignore: cast_nullable_to_non_nullable
+              as String,
+      valid: null == valid
+          ? _value.valid
+          : valid // ignore: cast_nullable_to_non_nullable
+              as DateTime,
+      owlSameAs: null == owlSameAs
+          ? _value.owlSameAs
+          : owlSameAs // ignore: cast_nullable_to_non_nullable
+              as String,
+      railway: null == railway
+          ? _value.railway
+          : railway // ignore: cast_nullable_to_non_nullable
+              as String,
+      operator: null == operator
+          ? _value.operator
+          : operator // ignore: cast_nullable_to_non_nullable
+              as String,
+      timeOfOrigin: null == timeOfOrigin
+          ? _value.timeOfOrigin
+          : timeOfOrigin // ignore: cast_nullable_to_non_nullable
+              as DateTime,
+      trainStatusText: null == trainStatusText
+          ? _value.trainStatusText
+          : trainStatusText // ignore: cast_nullable_to_non_nullable
+              as Map<String, String>,
+    ) as $Val);
+  }
+}
+
+/// @nodoc
+abstract class _$$TrainStatusImplCopyWith<$Res>
+    implements $TrainStatusCopyWith<$Res> {
+  factory _$$TrainStatusImplCopyWith(
+          _$TrainStatusImpl value, $Res Function(_$TrainStatusImpl) then) =
+      __$$TrainStatusImplCopyWithImpl<$Res>;
+  @override
+  @useResult
+  $Res call(
+      {String id,
+      String type,
+      DateTime valid,
+      String owlSameAs,
+      String railway,
+      String operator,
+      DateTime timeOfOrigin,
+      Map<String, String> trainStatusText});
+}
+
+/// @nodoc
+class __$$TrainStatusImplCopyWithImpl<$Res>
+    extends _$TrainStatusCopyWithImpl<$Res, _$TrainStatusImpl>
+    implements _$$TrainStatusImplCopyWith<$Res> {
+  __$$TrainStatusImplCopyWithImpl(
+      _$TrainStatusImpl _value, $Res Function(_$TrainStatusImpl) _then)
+      : super(_value, _then);
+
+  /// Create a copy of TrainStatus
+  /// with the given fields replaced by the non-null parameter values.
+  @pragma('vm:prefer-inline')
+  @override
+  $Res call({
+    Object? id = null,
+    Object? type = null,
+    Object? valid = null,
+    Object? owlSameAs = null,
+    Object? railway = null,
+    Object? operator = null,
+    Object? timeOfOrigin = null,
+    Object? trainStatusText = null,
+  }) {
+    return _then(_$TrainStatusImpl(
+      id: null == id
+          ? _value.id
+          : id // ignore: cast_nullable_to_non_nullable
+              as String,
+      type: null == type
+          ? _value.type
+          : type // ignore: cast_nullable_to_non_nullable
+              as String,
+      valid: null == valid
+          ? _value.valid
+          : valid // ignore: cast_nullable_to_non_nullable
+              as DateTime,
+      owlSameAs: null == owlSameAs
+          ? _value.owlSameAs
+          : owlSameAs // ignore: cast_nullable_to_non_nullable
+              as String,
+      railway: null == railway
+          ? _value.railway
+          : railway // ignore: cast_nullable_to_non_nullable
+              as String,
+      operator: null == operator
+          ? _value.operator
+          : operator // ignore: cast_nullable_to_non_nullable
+              as String,
+      timeOfOrigin: null == timeOfOrigin
+          ? _value.timeOfOrigin
+          : timeOfOrigin // ignore: cast_nullable_to_non_nullable
+              as DateTime,
+      trainStatusText: null == trainStatusText
+          ? _value._trainStatusText
+          : trainStatusText // ignore: cast_nullable_to_non_nullable
+              as Map<String, String>,
+    ));
+  }
+}
+
+/// @nodoc
+
+class _$TrainStatusImpl implements _TrainStatus {
+  const _$TrainStatusImpl(
+      {required this.id,
+      required this.type,
+      required this.valid,
+      required this.owlSameAs,
+      required this.railway,
+      required this.operator,
+      required this.timeOfOrigin,
+      required final Map<String, String> trainStatusText})
+      : _trainStatusText = trainStatusText;
+
+  @override
+  final String id;
+  @override
+  final String type;
+  @override
+  final DateTime valid;
+  @override
+  final String owlSameAs;
+  @override
+  final String railway;
+  @override
+  final String operator;
+  @override
+  final DateTime timeOfOrigin;
+  final Map<String, String> _trainStatusText;
+  @override
+  Map<String, String> get trainStatusText {
+    if (_trainStatusText is EqualUnmodifiableMapView) return _trainStatusText;
+    // ignore: implicit_dynamic_type
+    return EqualUnmodifiableMapView(_trainStatusText);
+  }
+
+  @override
+  String toString() {
+    return 'TrainStatus(id: $id, type: $type, valid: $valid, owlSameAs: $owlSameAs, railway: $railway, operator: $operator, timeOfOrigin: $timeOfOrigin, trainStatusText: $trainStatusText)';
+  }
+
+  @override
+  bool operator ==(Object other) {
+    return identical(this, other) ||
+        (other.runtimeType == runtimeType &&
+            other is _$TrainStatusImpl &&
+            (identical(other.id, id) || other.id == id) &&
+            (identical(other.type, type) || other.type == type) &&
+            (identical(other.valid, valid) || other.valid == valid) &&
+            (identical(other.owlSameAs, owlSameAs) ||
+                other.owlSameAs == owlSameAs) &&
+            (identical(other.railway, railway) || other.railway == railway) &&
+            (identical(other.operator, operator) ||
+                other.operator == operator) &&
+            (identical(other.timeOfOrigin, timeOfOrigin) ||
+                other.timeOfOrigin == timeOfOrigin) &&
+            const DeepCollectionEquality()
+                .equals(other._trainStatusText, _trainStatusText));
+  }
+
+  @override
+  int get hashCode => Object.hash(
+      runtimeType,
+      id,
+      type,
+      valid,
+      owlSameAs,
+      railway,
+      operator,
+      timeOfOrigin,
+      const DeepCollectionEquality().hash(_trainStatusText));
+
+  /// Create a copy of TrainStatus
+  /// with the given fields replaced by the non-null parameter values.
+  @JsonKey(includeFromJson: false, includeToJson: false)
+  @override
+  @pragma('vm:prefer-inline')
+  _$$TrainStatusImplCopyWith<_$TrainStatusImpl> get copyWith =>
+      __$$TrainStatusImplCopyWithImpl<_$TrainStatusImpl>(this, _$identity);
+}
+
+abstract class _TrainStatus implements TrainStatus {
+  const factory _TrainStatus(
+      {required final String id,
+      required final String type,
+      required final DateTime valid,
+      required final String owlSameAs,
+      required final String railway,
+      required final String operator,
+      required final DateTime timeOfOrigin,
+      required final Map<String, String> trainStatusText}) = _$TrainStatusImpl;
+
+  @override
+  String get id;
+  @override
+  String get type;
+  @override
+  DateTime get valid;
+  @override
+  String get owlSameAs;
+  @override
+  String get railway;
+  @override
+  String get operator;
+  @override
+  DateTime get timeOfOrigin;
+  @override
+  Map<String, String> get trainStatusText;
+
+  /// Create a copy of TrainStatus
+  /// with the given fields replaced by the non-null parameter values.
+  @override
+  @JsonKey(includeFromJson: false, includeToJson: false)
+  _$$TrainStatusImplCopyWith<_$TrainStatusImpl> get copyWith =>
+      throw _privateConstructorUsedError;
+}
+
+/// @nodoc
 mixin _$TrainRouteInfo {
   TrainLine get line => throw _privateConstructorUsedError;
   List<Station> get stations => throw _privateConstructorUsedError;
+  TrainStatus get currentStatus => throw _privateConstructorUsedError;
   Station? get currentStation => throw _privateConstructorUsedError;
 
   /// Create a copy of TrainRouteInfo
@@ -856,9 +1148,14 @@ abstract class $TrainRouteInfoCopyWith<$Res> {
           TrainRouteInfo value, $Res Function(TrainRouteInfo) then) =
       _$TrainRouteInfoCopyWithImpl<$Res, TrainRouteInfo>;
   @useResult
-  $Res call({TrainLine line, List<Station> stations, Station? currentStation});
+  $Res call(
+      {TrainLine line,
+      List<Station> stations,
+      TrainStatus currentStatus,
+      Station? currentStation});
 
   $TrainLineCopyWith<$Res> get line;
+  $TrainStatusCopyWith<$Res> get currentStatus;
   $StationCopyWith<$Res>? get currentStation;
 }
 
@@ -879,6 +1176,7 @@ class _$TrainRouteInfoCopyWithImpl<$Res, $Val extends TrainRouteInfo>
   $Res call({
     Object? line = null,
     Object? stations = null,
+    Object? currentStatus = null,
     Object? currentStation = freezed,
   }) {
     return _then(_value.copyWith(
@@ -890,6 +1188,10 @@ class _$TrainRouteInfoCopyWithImpl<$Res, $Val extends TrainRouteInfo>
           ? _value.stations
           : stations // ignore: cast_nullable_to_non_nullable
               as List<Station>,
+      currentStatus: null == currentStatus
+          ? _value.currentStatus
+          : currentStatus // ignore: cast_nullable_to_non_nullable
+              as TrainStatus,
       currentStation: freezed == currentStation
           ? _value.currentStation
           : currentStation // ignore: cast_nullable_to_non_nullable
@@ -904,6 +1206,16 @@ class _$TrainRouteInfoCopyWithImpl<$Res, $Val extends TrainRouteInfo>
   $TrainLineCopyWith<$Res> get line {
     return $TrainLineCopyWith<$Res>(_value.line, (value) {
       return _then(_value.copyWith(line: value) as $Val);
+    });
+  }
+
+  /// Create a copy of TrainRouteInfo
+  /// with the given fields replaced by the non-null parameter values.
+  @override
+  @pragma('vm:prefer-inline')
+  $TrainStatusCopyWith<$Res> get currentStatus {
+    return $TrainStatusCopyWith<$Res>(_value.currentStatus, (value) {
+      return _then(_value.copyWith(currentStatus: value) as $Val);
     });
   }
 
@@ -930,10 +1242,16 @@ abstract class _$$TrainRouteInfoImplCopyWith<$Res>
       __$$TrainRouteInfoImplCopyWithImpl<$Res>;
   @override
   @useResult
-  $Res call({TrainLine line, List<Station> stations, Station? currentStation});
+  $Res call(
+      {TrainLine line,
+      List<Station> stations,
+      TrainStatus currentStatus,
+      Station? currentStation});
 
   @override
   $TrainLineCopyWith<$Res> get line;
+  @override
+  $TrainStatusCopyWith<$Res> get currentStatus;
   @override
   $StationCopyWith<$Res>? get currentStation;
 }
@@ -953,6 +1271,7 @@ class __$$TrainRouteInfoImplCopyWithImpl<$Res>
   $Res call({
     Object? line = null,
     Object? stations = null,
+    Object? currentStatus = null,
     Object? currentStation = freezed,
   }) {
     return _then(_$TrainRouteInfoImpl(
@@ -964,6 +1283,10 @@ class __$$TrainRouteInfoImplCopyWithImpl<$Res>
           ? _value._stations
           : stations // ignore: cast_nullable_to_non_nullable
               as List<Station>,
+      currentStatus: null == currentStatus
+          ? _value.currentStatus
+          : currentStatus // ignore: cast_nullable_to_non_nullable
+              as TrainStatus,
       currentStation: freezed == currentStation
           ? _value.currentStation
           : currentStation // ignore: cast_nullable_to_non_nullable
@@ -978,6 +1301,7 @@ class _$TrainRouteInfoImpl implements _TrainRouteInfo {
   const _$TrainRouteInfoImpl(
       {required this.line,
       required final List<Station> stations,
+      required this.currentStatus,
       this.currentStation})
       : _stations = stations;
 
@@ -992,11 +1316,13 @@ class _$TrainRouteInfoImpl implements _TrainRouteInfo {
   }
 
   @override
+  final TrainStatus currentStatus;
+  @override
   final Station? currentStation;
 
   @override
   String toString() {
-    return 'TrainRouteInfo(line: $line, stations: $stations, currentStation: $currentStation)';
+    return 'TrainRouteInfo(line: $line, stations: $stations, currentStatus: $currentStatus, currentStation: $currentStation)';
   }
 
   @override
@@ -1006,13 +1332,19 @@ class _$TrainRouteInfoImpl implements _TrainRouteInfo {
             other is _$TrainRouteInfoImpl &&
             (identical(other.line, line) || other.line == line) &&
             const DeepCollectionEquality().equals(other._stations, _stations) &&
+            (identical(other.currentStatus, currentStatus) ||
+                other.currentStatus == currentStatus) &&
             (identical(other.currentStation, currentStation) ||
                 other.currentStation == currentStation));
   }
 
   @override
-  int get hashCode => Object.hash(runtimeType, line,
-      const DeepCollectionEquality().hash(_stations), currentStation);
+  int get hashCode => Object.hash(
+      runtimeType,
+      line,
+      const DeepCollectionEquality().hash(_stations),
+      currentStatus,
+      currentStation);
 
   /// Create a copy of TrainRouteInfo
   /// with the given fields replaced by the non-null parameter values.
@@ -1028,12 +1360,15 @@ abstract class _TrainRouteInfo implements TrainRouteInfo {
   const factory _TrainRouteInfo(
       {required final TrainLine line,
       required final List<Station> stations,
+      required final TrainStatus currentStatus,
       final Station? currentStation}) = _$TrainRouteInfoImpl;
 
   @override
   TrainLine get line;
   @override
   List<Station> get stations;
+  @override
+  TrainStatus get currentStatus;
   @override
   Station? get currentStation;
 

@@ -3,6 +3,7 @@ import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:train_logo_detection_app/ui/detection_detail/detection_detail_viewmodel.dart';
 import 'package:train_logo_detection_app/ui/core/train_logo.dart';
 import 'package:train_logo_detection_app/ui/station_detail/station_detail_screen.dart';
+
 class DetectionDetailScreen extends ConsumerStatefulWidget {
   const DetectionDetailScreen({super.key});
 
@@ -50,36 +51,62 @@ class _DetectionDetailScreenState extends ConsumerState<DetectionDetailScreen> {
           Container(
             padding: const EdgeInsets.all(16),
             color: trainColor,
-            child: Row(
+            child: Column(
+              crossAxisAlignment: CrossAxisAlignment.start,
               children: [
-                // 路線アイコン
-                TrainLineLogo(
-                  circleColor: trainColor,
-                  text: trainRouteInfo.line.lineCode,
-                  size: 60,
-                ),
-                const SizedBox(width: 16),
-                // 路線名
-                Column(
-                  crossAxisAlignment: CrossAxisAlignment.start,
+                Row(
                   children: [
-                    Text(
-                      trainRouteInfo.line.lineTitle['ja'] ?? '',
-                      style: const TextStyle(
-                        color: Colors.white,
-                        fontSize: 24,
-                        fontWeight: FontWeight.bold,
-                      ),
+                    // 路線アイコン
+                    TrainLineLogo(
+                      circleColor: trainColor,
+                      text: trainRouteInfo.line.lineCode,
+                      size: 60,
                     ),
-                    Text(
-                      trainRouteInfo.line.lineTitle['en'] ?? '',
-                      style: const TextStyle(
-                        color: Colors.white70,
-                        fontSize: 16,
+                    const SizedBox(width: 16),
+                    // 路線名
+                    Expanded(
+                      child: Column(
+                        crossAxisAlignment: CrossAxisAlignment.start,
+                        children: [
+                          Text(
+                            trainRouteInfo.line.lineTitle['ja'] ?? '',
+                            style: const TextStyle(
+                              color: Colors.white,
+                              fontSize: 24,
+                              fontWeight: FontWeight.bold,
+                            ),
+                          ),
+                          Text(
+                            trainRouteInfo.line.lineTitle['en'] ?? '',
+                            style: const TextStyle(
+                              color: Colors.white70,
+                              fontSize: 16,
+                            ),
+                          ),
+                        ],
                       ),
                     ),
                   ],
                 ),
+                // 運行情報
+                if (trainRouteInfo.currentStatus.trainStatusText['ja'] != null) ...[
+                  const SizedBox(height: 4),
+                  Container(
+                    padding:
+                        const EdgeInsets.symmetric(vertical: 8, horizontal: 12),
+                    decoration: BoxDecoration(
+                      color: Colors.white.withOpacity(0.9),
+                      borderRadius: BorderRadius.circular(4),
+                    ),
+                    child: Text(
+                      trainRouteInfo.currentStatus.trainStatusText['ja'] ?? '',
+                      style: TextStyle(
+                        color: trainColor,
+                        fontWeight: FontWeight.bold,
+                      ),
+                    ),
+                  ),
+                ],
               ],
             ),
           ),
@@ -98,7 +125,7 @@ class _DetectionDetailScreenState extends ConsumerState<DetectionDetailScreen> {
                       isCurrentStation ? Colors.yellow.withOpacity(0.3) : null,
                   leading: TrainLineLogo(
                     // 最寄駅ならアイコンを少し強調しても良い
-                    circleColor: isCurrentStation ? Colors.red : trainColor,
+                    circleColor: trainColor,
                     text: trainRouteInfo.line.lineCode,
                     subText: _getStationNumberOnly(
                         station.stationCode, trainRouteInfo.line.lineCode),

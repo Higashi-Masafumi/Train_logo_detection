@@ -14,3 +14,9 @@ A few resources to get you started if this is your first Flutter project:
 For help getting started with Flutter development, view the
 [online documentation](https://docs.flutter.dev/), which offers tutorials,
 samples, guidance on mobile development, and a full API reference.
+
+
+### 注意点
+
+- このリポジトリの物体検出機能はflutter_yoloのパッケージに依存しています
+- しかし、一部の機能でパッケージを変更して使用しているので、パッケージをそのままダウンロードするだけでは、アプリは動作しません。

@@ -1,6 +1,4 @@
 import 'dart:typed_data';
-
-import 'package:flutter/material.dart';
 import 'package:logging/logging.dart';
 import 'package:train_logo_detection_app/domain/models/detection_result/detection_result.dart';
 import 'package:train_logo_detection_app/domain/models/logo_detection/train_logo_detection.dart';
@@ -27,17 +25,15 @@ class VerifyDetectedObjectUseCase {
     // 物体検出結果と画像をもとに、物体画像を切り取る
     final detectionResultWithImage = await _cropImageofDetectedObject.cropImage(
         detectionResult, imageBinary);
-    _logger.fine('detectionResultWithImage: $detectionResultWithImage');
     // 物体画像をもとにOCRを行い、そこに検出ラベルに対応する文字列が含まれているかを判定する
     final detectionResultWithText =
         await _ocrCroppedImage.ocrCroppedImage(detectionResultWithImage);
-    _logger.fine('detectionResultWithText: $detectionResultWithText');
     // 検出ラベルに対応する文字列が含まれている場合、検出ラベルを返す
     final detectedLine =
         TrainLineLabel.fromString(detectionResult.label); // 検出ラベル
-    debugPrint('detectedLine: $detectedLine');
+    _logger.log(Level.INFO, 'detectedLine: $detectedLine');
     final detectedText = detectionResultWithText.detectedText; // OCR結果
-    debugPrint('detectedText: $detectedText');
+    _logger.log(Level.INFO, 'detectedText: $detectedText');
     if (detectedText.contains(TrainLineLabelMapper.getLogoText(detectedLine))) {
       return TrainLogoDetectionResult(
         detectionResult: detectionResult,

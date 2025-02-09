@@ -10,7 +10,7 @@ class GeolocatorService {
       // 位置情報の取得
       final position = await Geolocator.getCurrentPosition(
         locationSettings: const LocationSettings(
-          accuracy: LocationAccuracy.high,
+          accuracy: LocationAccuracy.bestForNavigation,
           distanceFilter: 0,
         ),
       );

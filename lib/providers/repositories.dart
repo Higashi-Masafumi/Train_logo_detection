@@ -10,8 +10,12 @@ import 'package:train_logo_detection_app/data/datasource/api_gateway/timetable_a
 import 'package:train_logo_detection_app/data/repositories/odpt_train_timetable_repository.dart';
 import 'package:train_logo_detection_app/domain/repositories/train_timetable_repository.dart';
 import 'package:train_logo_detection_app/domain/usecase/get_station_timetable.dart';
+import 'package:train_logo_detection_app/data/repositories/odpt_train_status_repository.dart';
+import 'package:train_logo_detection_app/domain/repositories/train_status_repository.dart';
+import 'package:train_logo_detection_app/data/datasource/api_gateway/train_status.dart';
 // データソース
 final timetableApiServiceProvider = Provider((ref) => TimetableApiService());
+final trainStatusApiServiceProvider = Provider((ref) => TrainStatusApiService());
 
 // リポジトリ
 final trainTimetableRepositoryProvider =
@@ -23,6 +27,11 @@ final trainTimetableRepositoryProvider =
 final trainRouteRepositoryProvider = Provider<TrainRouteRepository>((ref) {
   final databaseService = RailwayDatabaseService();
   return OdptTrainRouteRepository(databaseService);
+});
+
+final trainStatusRepositoryProvider = Provider<TrainStatusRepository>((ref) {
+  final trainStatusApiService = ref.watch(trainStatusApiServiceProvider);
+  return OdptTrainStatusRepository(trainStatusApiService);
 });
 
 // ユースケース
@@ -37,7 +46,8 @@ final getTrainRouteInfoUseCaseProvider =
     Provider<GetTrainRouteInfoUseCase>((ref) {
   final trainRouteRepository = ref.watch(trainRouteRepositoryProvider);
   final locationRepository = ref.watch(locationRepositoryProvider);
-  return GetTrainRouteInfoUseCase(trainRouteRepository, locationRepository);
+  final trainStatusRepository = ref.watch(trainStatusRepositoryProvider);
+  return GetTrainRouteInfoUseCase(trainRouteRepository, locationRepository, trainStatusRepository);
 });
 
 final locationRepositoryProvider = Provider<LocationRepository>((ref) {
