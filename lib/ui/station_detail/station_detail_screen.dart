@@ -33,6 +33,7 @@ class _StationDetailScreenState extends ConsumerState<StationDetailScreen> {
     'Rapid': Colors.blue[700],
     'CommuteRapid': Colors.purple[700],
     'CommuteExpress': Colors.orange[700],
+    'RapidExpress': Colors.indigo[700],
   };
 
   // 種別によって色とラベルを返すヘルパーメソッドを追加
@@ -45,6 +46,7 @@ class _StationDetailScreenState extends ConsumerState<StationDetailScreen> {
       'Rapid' => '快速',
       'CommuteRapid' => '通勤快速',
       'CommuteExpress' => '通勤急行',
+      'RapidExpress' => '快速急行',
       _ => '不明',
     };
     return (color, label);
