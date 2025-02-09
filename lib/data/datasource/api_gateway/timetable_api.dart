@@ -16,7 +16,6 @@ class TimetableApiService {
   // keyを変換する
   Map<String, dynamic> _convertStationTimetableKeys(
       Map<String, dynamic> dbMap) {
-    debugPrint('Converting keys for: ${dbMap['odpt:stationTimetableObject']}');
 
     return {
       'id': dbMap['@id'],

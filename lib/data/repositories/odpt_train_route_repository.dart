@@ -13,7 +13,6 @@ class OdptTrainRouteRepository implements TrainRouteRepository {
   Future<TrainLine> getTrainRouteInfo(TrainLogoDetectionResult result) async {
     final lineLabel = result.detectedLine!;
     final lineTitle = TrainLineLabelMapper.getLineNameJapanese(lineLabel);
-    debugPrint('Converting line: $lineTitle');
 
     try {
       final odptLine = await _databaseService.getLinebyTitle(lineTitle);

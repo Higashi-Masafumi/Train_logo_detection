@@ -9,6 +9,7 @@ class ImageCropImage implements CropImageofDetectedObject {
   @override
   Future<DetectionResultWithImage> cropImage(
       DetectionResult detectionResult, Uint8List imageBinary) async {
+
     final croppedImage = _imageService.cropImage(
       imageBinary,
       detectionResult.boundingBox,

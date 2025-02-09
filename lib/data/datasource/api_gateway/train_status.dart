@@ -18,10 +18,9 @@ class TrainStatusApiService {
   Future<TrainInformationDto> getTrainLineInformation(
       String operator, String owlSameAs) async {
     const consumerKey = String.fromEnvironment('ODPT_API_KEY');
-    debugPrint("consumerKey: $consumerKey");
+    debugPrint("ODPT_API_KEY: $consumerKey");
     final endpoint =
         'https://api.odpt.org/api/v4/odpt:TrainInformation?odpt:operator=odpt.Operator:$operator&odpt:railway=odpt.Railway:$owlSameAs&acl:consumerKey=$consumerKey';
-    debugPrint("Endpoint: $endpoint");
 
     final response = await http.get(Uri.parse(endpoint));
     if (response.statusCode != 200) {
@@ -31,10 +30,8 @@ class TrainStatusApiService {
     }
 
     final responseBody = response.body;
-    debugPrint('Response body: $responseBody');
 
     final List<dynamic> jsonList = jsonDecode(responseBody);
-    debugPrint('Decoded JSON: $jsonList');
 
     if (jsonList.isEmpty) {
       throw Exception('No train information found');

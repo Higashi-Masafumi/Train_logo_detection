@@ -32,7 +32,6 @@ class GetTrainRouteInfoUseCase {
           station.latitude,
           station.longitude,
         );
-        debugPrint('distance: $distance');
         if (distance != null &&
             distance < minDistance &&
             distance <= _maxDistanceMeters) {

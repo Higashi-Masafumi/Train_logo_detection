@@ -88,7 +88,6 @@ class RailwayDatabaseService {
   }
 
   Map<String, dynamic> _convertStationKeys(Map<String, dynamic> dbMap) {
-    debugPrint('Converting station keys for: ${dbMap['title']}');
 
     final modelMap = {
       'id': dbMap['id'],
