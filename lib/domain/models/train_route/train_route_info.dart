@@ -40,10 +40,25 @@ class Station with _$Station {
 }
 
 @freezed
+class TrainStatus with _$TrainStatus {
+  const factory TrainStatus({
+    required String id,
+    required String type,
+    required DateTime valid,
+    required String owlSameAs,
+    required String railway,
+    required String operator,
+    required DateTime timeOfOrigin,
+    required Map<String, String> trainStatusText,
+  }) = _TrainStatus;
+}
+
+@freezed
 class TrainRouteInfo with _$TrainRouteInfo {
   const factory TrainRouteInfo({
     required TrainLine line,
     required List<Station> stations,
+    required TrainStatus currentStatus,
     Station? currentStation,
   }) = _TrainRouteInfo;
 }
