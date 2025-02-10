@@ -33,7 +33,7 @@ class TrainInformationDto with _$TrainInformationDto {
     required String operator,
 
     /// 例: "2025-01-20T10:50:00+09:00"
-    required DateTime timeOfOrigin,
+    DateTime? timeOfOrigin,
 
     /// 例: {"ja": "現在、平常どおり運転しています。"}
     required Map<String, String> trainInformationText,

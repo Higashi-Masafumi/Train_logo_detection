@@ -1,4 +1,4 @@
 class Assets {
-  static const yoloModel = 'assets/metro_finder_yolo11.mlmodel';
+  static const yoloModel = 'assets/yolo11_v1.mlmodel';
   static const railwayData = 'assets/railway.db';
 }

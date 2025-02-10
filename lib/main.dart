@@ -281,8 +281,7 @@ class _InitializationScreenState extends State<InitializationScreen>
                                 ),
                                 subtitle: entry.key == Permission.location &&
                                         !entry.value
-                                    ? const Text(
-                                        '位置情報を許可すると、最寄駅を検出できます',
+                                    ? const Text('位置情報を許可すると、最寄駅を検出できます',
                                         style: TextStyle(fontSize: 12))
                                     : null,
                                 dense: true,

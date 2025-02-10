@@ -45,7 +45,7 @@ mixin _$TrainInformationDto {
   String get operator => throw _privateConstructorUsedError;
 
   /// 例: "2025-01-20T10:50:00+09:00"
-  DateTime get timeOfOrigin => throw _privateConstructorUsedError;
+  DateTime? get timeOfOrigin => throw _privateConstructorUsedError;
 
   /// 例: {"ja": "現在、平常どおり運転しています。"}
   Map<String, String> get trainInformationText =>
@@ -76,7 +76,7 @@ abstract class $TrainInformationDtoCopyWith<$Res> {
       String sameAs,
       String railway,
       String operator,
-      DateTime timeOfOrigin,
+      DateTime? timeOfOrigin,
       Map<String, String> trainInformationText});
 }
 
@@ -103,7 +103,7 @@ class _$TrainInformationDtoCopyWithImpl<$Res, $Val extends TrainInformationDto>
     Object? sameAs = null,
     Object? railway = null,
     Object? operator = null,
-    Object? timeOfOrigin = null,
+    Object? timeOfOrigin = freezed,
     Object? trainInformationText = null,
   }) {
     return _then(_value.copyWith(
@@ -139,10 +139,10 @@ class _$TrainInformationDtoCopyWithImpl<$Res, $Val extends TrainInformationDto>
           ? _value.operator
           : operator // ignore: cast_nullable_to_non_nullable
               as String,
-      timeOfOrigin: null == timeOfOrigin
+      timeOfOrigin: freezed == timeOfOrigin
           ? _value.timeOfOrigin
           : timeOfOrigin // ignore: cast_nullable_to_non_nullable
-              as DateTime,
+              as DateTime?,
       trainInformationText: null == trainInformationText
           ? _value.trainInformationText
           : trainInformationText // ignore: cast_nullable_to_non_nullable
@@ -168,7 +168,7 @@ abstract class _$$TrainInformationDtoImplCopyWith<$Res>
       String sameAs,
       String railway,
       String operator,
-      DateTime timeOfOrigin,
+      DateTime? timeOfOrigin,
       Map<String, String> trainInformationText});
 }
 
@@ -193,7 +193,7 @@ class __$$TrainInformationDtoImplCopyWithImpl<$Res>
     Object? sameAs = null,
     Object? railway = null,
     Object? operator = null,
-    Object? timeOfOrigin = null,
+    Object? timeOfOrigin = freezed,
     Object? trainInformationText = null,
   }) {
     return _then(_$TrainInformationDtoImpl(
@@ -229,10 +229,10 @@ class __$$TrainInformationDtoImplCopyWithImpl<$Res>
           ? _value.operator
           : operator // ignore: cast_nullable_to_non_nullable
               as String,
-      timeOfOrigin: null == timeOfOrigin
+      timeOfOrigin: freezed == timeOfOrigin
           ? _value.timeOfOrigin
           : timeOfOrigin // ignore: cast_nullable_to_non_nullable
-              as DateTime,
+              as DateTime?,
       trainInformationText: null == trainInformationText
           ? _value._trainInformationText
           : trainInformationText // ignore: cast_nullable_to_non_nullable
@@ -253,7 +253,7 @@ class _$TrainInformationDtoImpl implements _TrainInformationDto {
       required this.sameAs,
       required this.railway,
       required this.operator,
-      required this.timeOfOrigin,
+      this.timeOfOrigin,
       required final Map<String, String> trainInformationText})
       : _trainInformationText = trainInformationText;
 
@@ -294,7 +294,7 @@ class _$TrainInformationDtoImpl implements _TrainInformationDto {
 
   /// 例: "2025-01-20T10:50:00+09:00"
   @override
-  final DateTime timeOfOrigin;
+  final DateTime? timeOfOrigin;
 
   /// 例: {"ja": "現在、平常どおり運転しています。"}
   final Map<String, String> _trainInformationText;
@@ -375,7 +375,7 @@ abstract class _TrainInformationDto implements TrainInformationDto {
           required final String sameAs,
           required final String railway,
           required final String operator,
-          required final DateTime timeOfOrigin,
+          final DateTime? timeOfOrigin,
           required final Map<String, String> trainInformationText}) =
       _$TrainInformationDtoImpl;
 
@@ -416,7 +416,7 @@ abstract class _TrainInformationDto implements TrainInformationDto {
 
   /// 例: "2025-01-20T10:50:00+09:00"
   @override
-  DateTime get timeOfOrigin;
+  DateTime? get timeOfOrigin;
 
   /// 例: {"ja": "現在、平常どおり運転しています。"}
   @override

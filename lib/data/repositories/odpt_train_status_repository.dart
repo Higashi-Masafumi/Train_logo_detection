@@ -18,7 +18,7 @@ class OdptTrainStatusRepository implements TrainStatusRepository {
       owlSameAs: trainInformation.sameAs,
       railway: trainInformation.railway,
       operator: trainInformation.operator,
-      timeOfOrigin: trainInformation.timeOfOrigin,
+      timeOfOrigin: trainInformation.timeOfOrigin ?? DateTime.now(),
       trainStatusText: trainInformation.trainInformationText,
     );
   }
