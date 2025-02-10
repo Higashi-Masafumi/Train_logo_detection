@@ -44,7 +44,7 @@ class GoogleMlTextRecognition {
       }
 
       // BGRA8888フォーマットに変換
-      final convertedBytes = img.encodeBmp(decodedImage);
+      final convertedBytes = decodedImage.getBytes(order: img.ChannelOrder.bgra);
       
       final inputImage = InputImage.fromBytes(
         bytes: Uint8List.fromList(convertedBytes),
@@ -52,7 +52,7 @@ class GoogleMlTextRecognition {
           size: Size(width, height),
           rotation: InputImageRotation.rotation0deg,
           format: InputImageFormat.bgra8888,  // フォーマットを変更
-          bytesPerRow: width.toInt(),     // BGRAは1ピクセル4バイト
+          bytesPerRow: (width * 4).toInt(),     // BGRAは1ピクセル4バイト
         ),
       );
 
