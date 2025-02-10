@@ -4,6 +4,7 @@ import 'package:train_logo_detection_app/domain/models/train_route/train_route_i
 import 'package:train_logo_detection_app/domain/models/train_timetable/train_timetable.dart';
 import 'package:train_logo_detection_app/ui/core/train_logo.dart';
 import 'package:train_logo_detection_app/ui/station_detail/station_detail_viewmodel.dart';
+import 'package:train_logo_detection_app/config/train_type.dart';
 
 class StationDetailScreen extends ConsumerStatefulWidget {
   final Station station;
@@ -24,33 +25,6 @@ class _StationDetailScreenState extends ConsumerState<StationDetailScreen> {
   bool _isLoadingTimetable = false;
   bool _isFailedTimetable = false;
   Map<Station, StationTimetable>? _timetables;
-
-  // 種別ごとの色を定義
-  final _trainTypeColors = {
-    'Local': Colors.grey[600],
-    'Express': Colors.red[700],
-    'SemiExpress': Colors.lightGreen[700],
-    'Rapid': Colors.blue[700],
-    'CommuteRapid': Colors.purple[700],
-    'CommuteExpress': Colors.orange[700],
-    'RapidExpress': Colors.indigo[700],
-  };
-
-  // 種別によって色とラベルを返すヘルパーメソッドを追加
-  (Color, String) _getTrainTypeInfo(String trainTypeShort) {
-    final color = _trainTypeColors[trainTypeShort] ?? Colors.grey[600]!;
-    final label = switch (trainTypeShort) {
-      'Local' => '各駅停車',
-      'Express' => '急行',
-      'SemiExpress' => '準急',
-      'Rapid' => '快速',
-      'CommuteRapid' => '通勤快速',
-      'CommuteExpress' => '通勤急行',
-      'RapidExpress' => '快速急行',
-      _ => '不明',
-    };
-    return (color, label);
-  }
 
   // 駅番号から路線記号を除いた数字部分のみを取得するヘルパーメソッド
   String _getStationNumberOnly(String stationCode, String lineCode) {
@@ -108,7 +82,7 @@ class _StationDetailScreenState extends ConsumerState<StationDetailScreen> {
             const SizedBox(width: 8),
           ],
         ),
-        backgroundColor: Colors.lightBlueAccent,
+        backgroundColor: Color(int.parse(widget.line.color.replaceAll('#', '0xFF'))),
       ),
       body: SingleChildScrollView(
         child: Column(
@@ -344,7 +318,7 @@ class _StationDetailScreenState extends ConsumerState<StationDetailScreen> {
                             .last; // "Local"とか"Express"等
 
                         final (color, label) =
-                            _getTrainTypeInfo(trainTypeShort);
+                            trainTypeShort.getTrainTypeInfo();
 
                         return ListTile(
                           leading: Icon(Icons.train, color: color),

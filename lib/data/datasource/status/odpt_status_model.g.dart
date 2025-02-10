@@ -17,7 +17,9 @@ _$TrainInformationDtoImpl _$$TrainInformationDtoImplFromJson(
       sameAs: json['sameAs'] as String,
       railway: json['railway'] as String,
       operator: json['operator'] as String,
-      timeOfOrigin: DateTime.parse(json['timeOfOrigin'] as String),
+      timeOfOrigin: json['timeOfOrigin'] == null
+          ? null
+          : DateTime.parse(json['timeOfOrigin'] as String),
       trainInformationText:
           Map<String, String>.from(json['trainInformationText'] as Map),
     );
@@ -33,6 +35,6 @@ Map<String, dynamic> _$$TrainInformationDtoImplToJson(
       'sameAs': instance.sameAs,
       'railway': instance.railway,
       'operator': instance.operator,
-      'timeOfOrigin': instance.timeOfOrigin.toIso8601String(),
+      'timeOfOrigin': instance.timeOfOrigin?.toIso8601String(),
       'trainInformationText': instance.trainInformationText,
     };

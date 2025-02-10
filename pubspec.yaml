@@ -91,7 +91,7 @@ flutter:
 
   # To add assets to your application, add an assets section, like this:
   assets:
-    - assets/imgsz_320_192.mlmodel
+    - assets/yolo11_v1.mlmodel
     - assets/metro_finder_yolo11.mlmodel
     - assets/railway.db
     - assets/IMG_0248.PNG

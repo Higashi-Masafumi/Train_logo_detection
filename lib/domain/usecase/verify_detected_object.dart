@@ -1,10 +1,10 @@
-import 'dart:typed_data';
 import 'package:logging/logging.dart';
 import 'package:train_logo_detection_app/domain/models/detection_result/detection_result.dart';
 import 'package:train_logo_detection_app/domain/models/logo_detection/train_logo_detection.dart';
 import 'package:train_logo_detection_app/domain/repositories/crop_image.dart';
 import 'package:train_logo_detection_app/domain/repositories/ocr_image.dart';
 import 'package:train_logo_detection_app/config/train_logo.dart';
+import 'package:flutter/foundation.dart';
 
 // UseCase: 物体検出から、路線情報を取得する
 class VerifyDetectedObjectUseCase {
@@ -34,6 +34,8 @@ class VerifyDetectedObjectUseCase {
     _logger.log(Level.INFO, 'detectedLine: $detectedLine');
     final detectedText = detectionResultWithText.detectedText; // OCR結果
     _logger.log(Level.INFO, 'detectedText: $detectedText');
+    debugPrint('detectedLine: $detectedLine');
+    debugPrint('detectedText: $detectedText');
     if (detectedText.contains(TrainLineLabelMapper.getLogoText(detectedLine))) {
       return TrainLogoDetectionResult(
         detectionResult: detectionResult,
