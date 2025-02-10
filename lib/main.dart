@@ -296,13 +296,15 @@ class _InitializationScreenState extends State<InitializationScreen>
                     Row(
                       mainAxisAlignment: MainAxisAlignment.spaceEvenly,
                       children: [
-                        ElevatedButton(
+                        ElevatedButton.icon(
                           onPressed: _navigateToSettings,
-                          child: const Text('設定画面へ'),
+                          icon: const Icon(Icons.settings), // 歯車アイコン
+                          label: const Text('設定画面へ'),
                         ),
-                        ElevatedButton(
+                        ElevatedButton.icon(
                           onPressed: _navigateToDetectionScreen,
-                          child: const Text('検出画面へ'),
+                          icon: const Icon(Icons.camera_alt), // カメラアイコン
+                          label: const Text('検出画面へ'),
                         ),
                       ],
                     ),
