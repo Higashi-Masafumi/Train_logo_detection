@@ -231,7 +231,7 @@ class _InitializationScreenState extends State<InitializationScreen>
                   children: [
                     // ヘッダー部分
                     const Text(
-                      'メトロファインダー',
+                      'MetroFinder',
                       style: TextStyle(
                         fontSize: 24,
                         fontWeight: FontWeight.bold,
