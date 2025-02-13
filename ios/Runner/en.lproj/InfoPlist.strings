@@ -9,8 +9,8 @@
 "CFBundleDisplayName" = "Metro Finder";
 "CFBundleName" = "Metro Finder";
 "CFBundleIdentifier" = "com.example.metrofinder";
-"CFBundleVersion" = "1.0.4";
-"CFBundleShortVersionString" = "1.0.4";
+"CFBundleVersion" = "1.0.5+1";
+"CFBundleShortVersionString" = "1.0.5+1";
 "CFBundleExecutable" = "Runner";
 "CFBundlePackageType" = "APPL";
 "CFBundleInfoDictionaryVersion" = "6.0";
