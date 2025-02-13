@@ -41,6 +41,7 @@ class MyApp extends StatelessWidget {
         '/realtime_detection': (context) => const RealtimeDetectionScreen(),
         '/train_route_info': (context) => const DetectionDetailScreen(),
       },
+      debugShowCheckedModeBanner: false,
     );
   }
 }
